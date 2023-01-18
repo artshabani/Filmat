@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Movie>
+
+@{
+    ViewData["Title"] = "List of Movies";
+}
+
+@section Styles {
+    <link href="@Url.Content("~/css/movies.css")" rel="stylesheet"/>
+}
+
+
+
+
+<div class="card">
+    @foreach (var item in Model)
+    {
+  <a href="#">
+    <div class="img1"><img src="@item.ImageURL" alt="@item.Name" ></div>
+    <div class="img2"><img src="@item.ImageURL"></div>
+    <div class="title">@item.Name</div>
+    <div class="text">@item.Description</div>
+    <a href="#"><div class="catagory">@item.MovieCategory <i class="fas fa-film"></i></div></a>
+    <a href="#"><div class="views">@item.Duration min <i class="far fa-eye"></i> </div></a>
+  </a>
+    } 
+    
+</div>
+
+    
+
+
+
+
+
+
+@*<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.Name
+                                   
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@item.ImageURL" width="100%" alt="@item.Name">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text">@item.Description</p>
+                            <p class="card-text"><b>Name: </b>@item.Name</p>
+                            <p class="card-text"><b>Description: </b>@item.Description</p>
+                            <p class="card-text"><b>Duration: </b>@item.Duration min</p>
+                            <p class="card-text"><b>Category: </b>@item.MovieCategory</p>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer ">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+*@
