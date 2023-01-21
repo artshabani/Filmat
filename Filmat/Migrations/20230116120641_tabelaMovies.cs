@@ -19,8 +19,8 @@ namespace Filmat.Migrations
                     Name = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<int>(type: "int", nullable: false),
                     Duration = table.Column<int>(type: "int", nullable: false),
-                    MovieCategory = table.Column<int>(type: "int", nullable: false),
-                    ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    MovieCategory = table.Column<int>(type: "int", nullable:false),
+                    ImageURL = table.Column<string>(type: "nvarchar(max)", nullable:  false)
                 },
                 constraints: table =>
                 {

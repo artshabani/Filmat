@@ -1,4 +1,5 @@
 ﻿using Filmat.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -17,7 +18,7 @@ namespace Filmat.Controllers
 		{
 			return View();
 		}
-
+		
 		public IActionResult Privacy()
 		{
 			return View();

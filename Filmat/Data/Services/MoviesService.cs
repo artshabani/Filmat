@@ -1,4 +1,5 @@
-﻿using Filmat.Models;
+﻿using Filmat.Areas.Identity.Data;
+using Filmat.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Filmat.Data.Services
@@ -11,30 +12,37 @@ namespace Filmat.Data.Services
 		{
 			_context = context;
 		}
-		public void Add(Movie movie)
+
+		public async Task AddAsync(Movie movie)
 		{
-			throw new NotImplementedException();
+			await _context.Movies.AddAsync(movie);
+			await _context.SaveChangesAsync();
 		}
 
-		public void Delete(int id)
+		public async Task DeleteAsync(int id)
 		{
-			throw new NotImplementedException();
+			var result = await _context.Movies.FirstOrDefaultAsync(n => n.Id == id);
+			_context.Movies.Remove(result);
+			await _context.SaveChangesAsync();
 		}
 
-		public async Task<IEnumerable<Movie>> GetAll()
+		public async Task<IEnumerable<Movie>> GetAllAsync()
 		{
 			var result = await _context.Movies.ToListAsync();
 			return result;
 		}
 
-		public Movie GetById(int id)
+		public async Task<Movie> GetByIdAsync(int id)
 		{
-			throw new NotImplementedException();
+			var result = await _context.Movies.FirstOrDefaultAsync(n => n.Id == id);
+			return result;
 		}
 
-		public Movie Update(int id, Movie newMovie)
+		public async Task<Movie> UpdateAsync(int id, Movie newMovie)
 		{
-			throw new NotImplementedException();
+			_context.Update(newMovie);
+			await _context.SaveChangesAsync();
+			return newMovie;
 		}
 	}
 }

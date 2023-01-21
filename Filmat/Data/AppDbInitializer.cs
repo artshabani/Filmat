@@ -1,4 +1,5 @@
-﻿using Filmat.Models;
+﻿using Filmat.Areas.Identity.Data;
+using Filmat.Models;
 
 namespace Filmat.Data
 {

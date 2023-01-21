@@ -73,10 +73,23 @@
                 </tbody>
             </table>
         </div>
-        <div class="container">
+        
+    </div> 
+    <div class="container">
                 @if (pager.TotalPages > 0)
                 {
                     <ul class="pagination justify-content-end">
+
+                        @if(pager.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="Clients" asp-action="Index" asp-route-pg="1">First</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="Clients" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
+                            </li>
+                        }
+
 
                         @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
                         {
@@ -85,10 +98,20 @@
                             </li>
                                 
                         }
+                        @if(pager.CurrentPage < pager.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="Clients" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+                            </li>
+                            <li>
+                                <a class="page-link" asp-controller="Clients" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
+                            </li>
+                        }
+
+
                     </ul>
                 }
             </div>
-    </div> 
     <div style="position:fixed; right:25px; bottom:25px;" class="text-white">
     <a asp-controller="Clients" asp-action="Create" class="btn btn-success"><i class="bg-info bi-plus-circle">Add New</i></a>
 </div>

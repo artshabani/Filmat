@@ -19,7 +19,7 @@ namespace Filmat.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
-                    email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    email = table.Column<string>(type: "nvarchar(max)", nullable:     false),
                     password = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>

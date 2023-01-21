@@ -16,6 +16,8 @@ namespace Filmat.Models
 
 		public string ImageURL { get; set; }
 
+		public string VideoURL { get; set; }
+
 
 	}
 }

@@ -10,10 +10,10 @@
 
 
 
-
-<div class="card">
-    @foreach (var item in Model)
+@foreach (var item in Model)
     {
+<div class="card">
+    
   <a href="#">
     <div class="img1"><img src="@item.ImageURL" alt="@item.Name" ></div>
     <div class="img2"><img src="@item.ImageURL"></div>
@@ -22,11 +22,9 @@
     <a href="#"><div class="catagory">@item.MovieCategory <i class="fas fa-film"></i></div></a>
     <a href="#"><div class="views">@item.Duration min <i class="far fa-eye"></i> </div></a>
   </a>
-    } 
-    
 </div>
 
-    
+    } 
 
 
 

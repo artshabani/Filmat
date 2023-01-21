@@ -1,6 +1,12 @@
 using Filmat.Data;
 using Filmat.Data.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Filmat.Models;
+using Microsoft.AspNetCore.Identity;
+using Filmat.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +19,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
 
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
 
+
+
+builder.Services.AddMvc(config => {
+	var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+	
+}); 
 
 
 var app = builder.Build();
@@ -31,13 +44,17 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
 	name: "default",
-	pattern: "{controller=Clients}/{action=Index}/{id?}");
+	pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
 
 AppDbInitializer.Seed(app);
+
 
 app.Run();

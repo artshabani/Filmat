@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Filmat.Data.Services;
 using Filmat.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Filmat.Controllers
 {
@@ -21,7 +22,8 @@ namespace Filmat.Controllers
 		{
 			var data = await _service.GetAllAsync();
 
-			const int pageSize = 10;
+			const int pageSize = 5;
+
 			if(pg < 1)
 			{
 				pg = 1;
@@ -49,7 +51,7 @@ namespace Filmat.Controllers
 		{
 			return View();
 		}
-
+		[Authorize]
 		[HttpPost]
 		public async Task<IActionResult> Create([Bind("Name,Age,Username,Password")] Client client)
 		{
