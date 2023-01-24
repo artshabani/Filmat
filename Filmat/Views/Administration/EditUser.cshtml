@@ -1,0 +1,47 @@
+﻿@model Filmat.ViewModels.EditUserViewModel
+
+@{
+    ViewData["Title"] = "Update User";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Update user : @Model.Emri</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="EditUser" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
+                    <div class="form-group">
+                        <label asp-for="Id" class="control-label"></label>
+                        <input asp-for="Id" disabled class="form-control" />
+                        <span asp-validation-for="Id"  class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Name</label>
+                        <input asp-for="FullName" class="form-control" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Emri" class="control-label"></label>
+                        <input asp-for="Emri" class="form-control" />
+                        <span asp-validation-for="Emri" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="ListUsers">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

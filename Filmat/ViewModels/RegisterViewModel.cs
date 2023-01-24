@@ -21,5 +21,15 @@ namespace Filmat.ViewModels
 		ErrorMessage = "Passwords do not match!")]
 		public string ConfirmPassword { get; set; }	
 
+		[Required]
+		public string FullName { get; set; }	
+
+		[Required]
+		public string Emri { get; set; }
+		
+		
+		
+
+
 	}
 }

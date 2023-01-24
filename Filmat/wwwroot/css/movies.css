@@ -6,6 +6,7 @@
 
 body {
 	font-family: sans-serif;
+	
 }
 
 a {
@@ -23,6 +24,7 @@ a {
 	border: 5px solid #1a163f;
 	border-radius: 3px;
 	box-shadow: 0 0 10px #2a264f;
+
 }
 
 	img{

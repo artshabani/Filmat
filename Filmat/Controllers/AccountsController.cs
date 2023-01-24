@@ -53,13 +53,27 @@ namespace Filmat.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+				var user = new ApplicationUser {
+
+					UserName = model.FullName,
+					FullName = model.FullName,  // username
+					Email = model.Email,			
+					Emri = model.Emri //fullName
+					
+					
+
+				};
 				var result = await userManager.CreateAsync(user, model.Password);
 
 				if (result.Succeeded)
 				{
-					await signInManager.SignInAsync(user, isPersistent: false);
-				    return RedirectToAction("Index", "Home");
+					if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+					{
+						return RedirectToAction("ListUsers", "Administration");
+						
+					}
+						await signInManager.SignInAsync(user, isPersistent: false);
+						return RedirectToAction("Index", "Home");
 				}
 
 				foreach (var error in result.Errors)
@@ -83,10 +97,13 @@ namespace Filmat.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var result = await signInManager.PasswordSignInAsync(model.Email, model.Password,
+				var result = await signInManager.PasswordSignInAsync(model.FullName, model.Password,
 																	 model.RememberMe, false);
 
-				if (result.Succeeded)
+				//var result2 = await signInManager.PasswordSignInAsync(model.Email, model.Password,
+				//													 model.RememberMe, false);
+
+				if (result.Succeeded /* && result2.Succeeded*/)
 				{
 					
 						return RedirectToAction("Index", "Home");

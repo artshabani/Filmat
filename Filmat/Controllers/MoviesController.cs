@@ -1,4 +1,4 @@
-﻿using Filmat.Data;
+﻿ using Filmat.Data;
 using Filmat.Data.Services;
 using Filmat.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -16,31 +16,33 @@ namespace Filmat.Controllers
 			_service = service;	
 		}
 
-		public async Task<IActionResult> Index(/*int pg = 1*/)
-		{
+		
+
+		public async Task<IActionResult> Index(int pg = 1)
+		{ 
 			var data = await _service.GetAllAsync();
 
-			//const int pageSize = 5;
+			const int pageSize = 5;
 
-			//if (pg < 1)
-			//{
-			//	pg = 1;
-			//}
+			if (pg < 1)
+			{
+				pg = 1;
+			}
 
-			//int recsCount = data.Count(); // sa rekorde jon
+			int recsCount = data.Count(); // sa rekorde jon
 
-			//var pager = new Pager(recsCount, pg, pageSize);
+			var pager = new Pager(recsCount, pg, pageSize);
 
-			//int recSkip = (pg - 1) * pageSize;
+			int recSkip = (pg - 1) * pageSize;
 
-			//var data2 = data.Skip(recSkip).Take(pager.PageSize).ToList(); // sa recorde kan mu bo skip (per me display recorded n'faqen perkatese)
+			var data2 = data.Skip(recSkip).Take(pager.PageSize).ToList(); // sa recorde kan mu bo skip (per me display recorded n'faqen perkatese)
 
-			//this.ViewBag.Pager = pager;
+			this.ViewBag.Pager = pager;
 
 
-			//return  View(data);
+			return  View(data2);
 
-			return View(data);
+			
 
 		}
 
@@ -111,10 +113,14 @@ namespace Filmat.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
-	}
+
+
+		
+
+		}
 	
 			
 			
-	}
+}
 
 

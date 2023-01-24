@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Movie>
+
+@{
+    ViewData["Title"] = "List of Movies";
+
+    
+}
+
+@section Styles {
+    <link href="@Url.Content("~/css/movies.css")" rel="stylesheet"/>
+}
+
+<a asp-action="MoviesByCategory">Comedy</a>
+<a href="#">Drama</a>
+<a href="#">Horror</a>
+<a href="#">erotic</a>
+
+@foreach (var item in Model)
+    {
+        
+<div class="card">
+    
+  <a asp-action="PlayMovies" asp-route-id="@item.Id">
+    <div class="img1"><img src="@item.ImageURL" alt="@item.Name" ></div>
+    <div class="img2"><img src="@item.ImageURL"></div>
+    <div class="title">@item.Name</div>
+    <div class="text">@item.Description</div>
+    <a href="#"><div class="catagory">@item.MovieCategory <i class="fas fa-film"></i></div></a>
+    <a href="#"><div class="views">@item.Duration min <i class="far fa-eye"></i> </div></a>
+  </a>
+</div>
+<div style:"width:auto">
+<a class="edit" title="Edit" data-toggle="tooltip" asp-action="Edit" asp-route-id="@item.Id"><i class="material-icons">&#xE254;</i></a>
+<a title="Details" data-toggle="tooltip" asp-action="Details" asp-route-id="@item.Id"><i class="material-icons">&#xE253;</i></a> 
+<a onclick="return confirm('Are you sure you want to delete user: @item.Name')" class="delete" title="Delete" data-toggle="tooltip" asp-action="Delete" asp-route-id="@item.Id"><i class="material-icons">&#xE872;</i></a>
+</div>
+
+    } 
+    
+                
+                }
+              
+
+
+
+
+
+@*<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.Name
+                                   
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@item.ImageURL" width="100%" alt="@item.Name">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text">@item.Description</p>
+                            <p class="card-text"><b>Name: </b>@item.Name</p>
+                            <p class="card-text"><b>Description: </b>@item.Description</p>
+                            <p class="card-text"><b>Duration: </b>@item.Duration min</p>
+                            <p class="card-text"><b>Category: </b>@item.MovieCategory</p>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer ">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+*@
