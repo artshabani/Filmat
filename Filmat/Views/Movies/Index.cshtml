@@ -40,7 +40,6 @@
 <a class="edit" title="Edit" data-toggle="tooltip" asp-action="Edit" asp-route-id="@item.Id"><i class="material-icons">&#xE254;</i></a>
 <a title="Details" data-toggle="tooltip" asp-action="Details" asp-route-id="@item.Id"><i class="material-icons">&#xE253;</i></a>
         <a 
-            onclick="return confirm('Are you sure you want to delete user: @item.Name')" 
             class="delete" 
             title="Delete" 
             data-toggle="tooltip" 

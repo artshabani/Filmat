@@ -86,15 +86,17 @@ namespace Filmat.Controllers
 		
 		//////////////////////////////////////////////////////////////
 		
-		[HttpGet]
+		
 		public IActionResult Login()
 		{
 			return View();
 		}
 
+
 		[HttpPost]
-		public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
-		{
+		
+		public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = default)
+		{	
 			if (ModelState.IsValid)
 			{
 				var result = await signInManager.PasswordSignInAsync(model.FullName, model.Password,
