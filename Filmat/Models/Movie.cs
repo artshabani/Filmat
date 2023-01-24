@@ -1,9 +1,11 @@
 ﻿using Filmat.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace Filmat.Models
 {
 	public class Movie
 	{
+		
 		public int Id { get; set; }
 
 		public string Name { get; set; }
@@ -17,6 +19,8 @@ namespace Filmat.Models
 		public string ImageURL { get; set; }
 
 		public string VideoURL { get; set; }
+
+		
 
 
 	}

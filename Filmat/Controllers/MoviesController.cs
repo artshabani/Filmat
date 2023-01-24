@@ -1,6 +1,7 @@
 ﻿ using Filmat.Data;
 using Filmat.Data.Services;
 using Filmat.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -46,13 +47,13 @@ namespace Filmat.Controllers
 			
 
 		}
-
+		[Authorize]
 		//Get: Clients/Create
 		public IActionResult Create()
 		{
 			return View();
 		}
-
+		[Authorize]
 		[HttpPost]
 		public async Task<IActionResult> Create([Bind("Name,Description,MovieCategory,ImageURL,VideoURL")] Movie movie)
 		{
@@ -132,11 +133,19 @@ namespace Filmat.Controllers
 			}
 		}
 
-
-
-		
-
+		[HttpGet]
+		public async Task<ActionResult> MoviesByCategory(string category)
+		{
+			var movies = await _service.GetAllAsync();
+			var mc = movies.Where(m => m.MovieCategory.ToString().Equals(category));
+			return View(mc);
 		}
+
+
+
+
+
+	}
 	
 			
 			

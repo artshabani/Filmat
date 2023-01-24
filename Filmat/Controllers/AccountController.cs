@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace Filmat.Controllers
 {
 	
-	public class AccountsController : Controller
+	public class AccountController : Controller
 	{
 		private readonly UserManager<ApplicationUser> userManager;
 		private readonly SignInManager<ApplicationUser> signInManager;
 
-		public AccountsController(UserManager<ApplicationUser> userManager,
+		public AccountController(UserManager<ApplicationUser> userManager,
 								 SignInManager<ApplicationUser> signInManager) 
 		{
 			this.userManager = userManager;
@@ -25,7 +25,7 @@ namespace Filmat.Controllers
 			await signInManager.SignOutAsync();
 			return RedirectToAction("index", "home");
 		}
-
+		
 		[HttpGet]
 		public IActionResult Register()
 		{
@@ -93,7 +93,7 @@ namespace Filmat.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Login(LoginViewModel model)
+		public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
 		{
 			if (ModelState.IsValid)
 			{
@@ -105,8 +105,16 @@ namespace Filmat.Controllers
 
 				if (result.Succeeded /* && result2.Succeeded*/)
 				{
-					
+					if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+					{
+						return Redirect(returnUrl);
+
+					}
+					else
+					{
 						return RedirectToAction("Index", "Home");
+					}
+						
 					
 					
 				}

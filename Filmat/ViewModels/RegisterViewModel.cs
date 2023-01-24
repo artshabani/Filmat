@@ -8,7 +8,7 @@ namespace Filmat.ViewModels
 		
 		[Required]
 		[EmailAddress]
-		[Remote(action: "IsEmailInUse", controller:"Accounts")]
+		[Remote(action: "IsEmailInUse", controller:"Account")]
 		public string Email { get; set; }
 
 		[Required]
