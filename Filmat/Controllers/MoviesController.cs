@@ -1,6 +1,7 @@
 ﻿ using Filmat.Data;
 using Filmat.Data.Services;
 using Filmat.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -93,24 +94,42 @@ namespace Filmat.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
+		
+        public async Task<IActionResult> Delete(int id)
+        {
+            var movieDetails = await _service.GetByIdAsync(id);
+            if (movieDetails == null) return View("NotFound");
+            return View(movieDetails);
+        }
 
-		//Get: Clients/Delete/1
-		public async Task<IActionResult> Delete(int id)
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var movieDetails = await _service.GetByIdAsync(id);
+            if (movieDetails == null) return View("NotFound");
+
+            await _service.DeleteAsync(id);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+
+        public async Task<IActionResult> PlayMovie(int id)
 		{
-			var movieDetails = await _service.GetByIdAsync(id);
-			if (movieDetails == null) return View("NotFound");
-			return View(movieDetails);
-		}
+			var movie = await _service.GetByIdAsync(id);
 
-		[HttpPost, ActionName("Delete")]
-		public async Task<IActionResult> DeleteConfirmed(int id, Movie movie)
-		{
-			var movieDetails = await _service.GetByIdAsync(id);
-			if (movieDetails == null) return View("NotFound");
 
-			await _service.DeleteAsync(id);
-
-			return RedirectToAction(nameof(Index));
+			if (movie == null)
+			{
+				ViewBag.ErrorMessage = $"Movie with Id = {id} cannot be found";
+				return View("NotFound");
+			}
+			else
+			{
+				return View(movie);
+			}
 		}
 
 
