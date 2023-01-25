@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Filmat.Controllers
 {
+	[Authorize]
 	public class MoviesController : Controller
 	{
 		private readonly IMoviesService _service;

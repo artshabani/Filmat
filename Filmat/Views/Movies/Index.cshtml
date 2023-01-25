@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<Movie>
+@inject SignInManager<ApplicationUser> signInManager;
+
 
 @{
     ViewData["Title"] = "List of Movies";
@@ -36,26 +38,30 @@
     <a href="#"><div class="views">@item.Duration min <i class="far fa-eye"></i> </div></a>
   </a>
 </div>
-<div style:"width:auto">
-<a class="edit" title="Edit" data-toggle="tooltip" asp-action="Edit" asp-route-id="@item.Id"><i class="material-icons">&#xE254;</i></a>
-<a title="Details" data-toggle="tooltip" asp-action="Details" asp-route-id="@item.Id"><i class="material-icons">&#xE253;</i></a>
-        <a 
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
+        <div style:"width:auto">
+            <a class="edit" title="Edit" data-toggle="tooltip" asp-action="Edit" asp-route-id="@item.Id"><i class="material-icons">&#xE254;</i></a>
+            <a title="Details" data-toggle="tooltip" asp-action="Details" asp-route-id="@item.Id"><i class="material-icons">&#xE253;</i></a>
+            <a 
             class="delete" 
             title="Delete" 
             data-toggle="tooltip" 
             asp-action="Delete" 
             asp-route-id="@item.Id"
         >
-            <i class="material-icons">&#xE872;</i>
-        </a>
-</div>
-
+                <i class="material-icons">&#xE872;</i>
+            </a>
+        </div>
     }
 
-<div style="position:fixed; right:25px; bottom:25px;" class="text-white">
-    <a asp-controller="Movies" asp-action="Create" class="btn btn-success"><i class="bg-info bi-plus-circle">Add New</i></a>
-</div>
-   
+}
+         @if(signInManager.IsSignedIn(User) && User.IsInRole("Admin")){
+        <div style="position:fixed; right:25px; bottom:25px;" class="text-white">
+            <a asp-controller="Movies" asp-action="Create" class="btn btn-success"><i class="bg-info bi-plus-circle">Add New</i></a>
+        </div>
+         }
+
 </div>
 <div class="container">
     @if (pager.TotalPages > 0)
