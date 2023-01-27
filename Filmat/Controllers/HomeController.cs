@@ -1,4 +1,5 @@
-﻿using Filmat.Models;
+﻿using Filmat.Data.Services;
+using Filmat.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -7,17 +8,19 @@ namespace Filmat.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ILogger<HomeController> _logger;
 
-		public HomeController(ILogger<HomeController> logger)
+        private readonly IMoviesService _service;
+
+        public HomeController(IMoviesService service)
 		{
-			_logger = logger;
+			_service = service;
 		}
 
-		public IActionResult Index()
+		public async Task<IActionResult> Index()  //most viewed movie
 		{
-			return View();
-		}
+            var mostViewed = await _service.GetMostViewedMovie();
+			return View(mostViewed);
+        }
 		
 		public IActionResult Privacy()
 		{
