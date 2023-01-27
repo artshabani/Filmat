@@ -10,7 +10,7 @@ namespace Filmat.Data.Services
 		Task<Movie> UpdateAsync(int id, Movie newMovie);
 		Task DeleteAsync(int id);
 
-        Task<Movie> GetMostViewedMovie();
+        IEnumerable<Movie> GetMostViewedMovies();
 
 
 
