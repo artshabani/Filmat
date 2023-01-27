@@ -46,5 +46,15 @@ namespace Filmat.Data.Services
 			await _context.SaveChangesAsync();
 			return newMovie;
 		}
-	}
+
+        //get the most viewed movie
+
+        public async Task<Movie> GetMostViewedMovie()
+        {
+            var mostViewedMovie = await _context.Movies
+                .OrderByDescending(m => m.ViewCount)
+                .FirstOrDefaultAsync();
+            return mostViewedMovie;
+        }
+    }
 }
