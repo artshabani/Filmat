@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Filmat.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230122123728_removedAge")]
-    partial class removedAge
+    [Migration("20230127131147_addedViewCount")]
+    partial class addedViewCount
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -97,36 +97,6 @@ namespace Filmat.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Filmat.Models.Client", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("Age")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Clients");
-                });
-
             modelBuilder.Entity("Filmat.Models.Movie", b =>
                 {
                     b.Property<int>("Id")
@@ -156,6 +126,9 @@ namespace Filmat.Migrations
                     b.Property<string>("VideoURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ViewCount")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

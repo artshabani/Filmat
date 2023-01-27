@@ -15,7 +15,7 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
 
 
     public DbSet<Movie> Movies { get; set; }
-    public DbSet<Client> Clients { get; set; }
+    
     
 
 }
