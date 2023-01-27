@@ -121,6 +121,7 @@ namespace Filmat.Controllers
         public async Task<IActionResult> PlayMovie(int id)
 		{
 			var movie = await _service.GetByIdAsync(id);
+			
 
 
 			if (movie == null)
@@ -130,9 +131,13 @@ namespace Filmat.Controllers
 			}
 			else
 			{
-				return View(movie);
-			}
-		}
+                movie.ViewCount++;
+                await _service.UpdateAsync(id, movie);
+                return View(movie);
+                
+            }
+            
+        }
 
 		[HttpGet]
 		public async Task<ActionResult> MoviesByCategory(string category)
