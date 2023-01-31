@@ -1,28 +1,96 @@
 ﻿@model IEnumerable<Movie>
 
 @{
-ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home Page";
+    Layout = null;
 }
+ <link href="@Url.Content("~/css/movies.css")" rel="stylesheet" />
+ <link href="@Url.Content("~/css/HomePage.css")" rel="stylesheet" />
 
-@section Styles {
-    <link href="@Url.Content("~/css/movies.css")" rel="stylesheet" />
-}
+    
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+     <div class="container">
+        <nav class="navbar">
+            <div class="left">
+                <img src="../css/images/frame-2.png" alt="logo">
+            </div>
+            @*<div class="right">
+                @*<select name="language" class="language">
+                    <option value="English">English</option>
+                    <option value="Albanian">Albanian</option>
+                </select>
+                
+            </div>*@
+        </nav>
+
+        <div class="title">
+            <div class="content">
+                <h1>Watch your favorite movies, TV shows and more.</h1>
+                <div class="login">
+                    <h3>Ready to watch? Enter your email and get access to unlimited fun!</h3>
+                    <div class="email">
+                        <button><a asp-controller="Account" asp-action="Register">Sign In</a></button>
+                        <button><a asp-controller="Account" asp-action="Login">Log In</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+
+<div class="style-cards">
+
+    
+    <div class="card-0">
+        @foreach (var item in Model)
+        {
+            <div class="desc-0">
+                <h1>The most viewed movie is : </h1>
+                <h2><i>@item.Name</i></h2>
+            </div>
+        <a asp-action="PlayMovie" asp-route-id="@item.Id">
+            <img src="@item.ImageURL" alt="@item.Name">
+            
+        </a>
+        }
+    </div>
+    
 </div>
 
-@foreach (var item in Model)
-{
-    <div class="card">
-        <a >
-            <div class="img1"><img src="@item.ImageURL" alt="@item.Name"></div>
-            <div class="img2"><img src="@item.ImageURL"></div>
-            <div class="title">@item.Name</div>
-            <div class="text">@item.Description</div>
-            <a href="#"><div class="catagory">@item.MovieCategory <i class="fas fa-film"></i></div></a>
-            <a href="#"><div class="views">@item.Duration min <i class="far fa-eye"></i> </div></a>
-        </a>
+<footer class="footer-distributed">
+
+    <div class="footer-left">
+        <h3>Filma<span>Njezetepese</span></h3>
+
+        <p class="footer-links">
+            <a href="#">Home</a>
+            
+            <a href="#">About</a>
+        </p>
+
+        <p class="footer-company-name">Copyright © 2023 <strong>Filma25</strong> All rights reserved</p>
     </div>
-}
+
+    <div class="footer-center">
+        
+    </div>
+
+    <div class="footer-right">
+        <p class="footer-company-about">
+            <span>About the company</span>
+            <strong>Filma 25</strong> is a movie page where you can watch the best movies!
+           
+        </p>
+        @*<div class="footer-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+        </div>*@
+    </div>
+</footer>
+
+
