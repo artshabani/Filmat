@@ -41,23 +41,21 @@
   
 
 <div class="style-cards">
-
-    
+    @{
+        var mostViewedMovies = Model;
+        var mostViewedMovie = mostViewedMovies.FirstOrDefault();
+    }
     <div class="card-0">
-        @foreach (var item in Model)
-        {
-            <div class="desc-0">
-                <h1>The most viewed movie is : </h1>
-                <h2><i>@item.Name</i></h2>
-            </div>
-        <a asp-action="PlayMovie" asp-route-id="@item.Id">
-            <img src="@item.ImageURL" alt="@item.Name">
-            
+        <div class="desc-0">
+            <h1>The most viewed movie is:</h1>
+            <h2><i>@mostViewedMovie.Name</i></h2>
+        </div>
+        <a asp-action="Index" asp-route-id="@mostViewedMovie.Id">
+            <img src="@mostViewedMovie.ImageURL" alt="@mostViewedMovie.Name">
         </a>
-        }
     </div>
-    
 </div>
+
 
 <footer class="footer-distributed">
 
