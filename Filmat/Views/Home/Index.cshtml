@@ -1,4 +1,4 @@
-﻿@model Movie
+﻿@model IEnumerable<Movie>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -38,23 +38,21 @@
         </div>
     </div>
 
-  
+    @foreach(var item in Model){
+<div class="card">
 
-<div class="style-cards">
-    @{
-        var mostViewedMovies = Model;
-        var mostViewedMovie = mostViewedMovies.FirstOrDefault();
-    }
-    <div class="card-0">
-        <div class="desc-0">
-            <h1>The most viewed movie is:</h1>
-            <h2><i>@mostViewedMovie.Name</i></h2>
-        </div>
-        <a asp-action="Index" asp-route-id="@mostViewedMovie.Id">
-            <img src="@mostViewedMovie.ImageURL" alt="@mostViewedMovie.Name">
-        </a>
-    </div>
+    <a >
+        <div class="img1"><img src="@item.ImageURL" alt="@item.Name"></div>
+        <div class="img2"><img src="@item.ImageURL"></div>
+        <div class="title">@item.Name</div>
+        <div class="text">@item.Description</div>
+        <a href="#"><div class="catagory">@item.MovieCategory <i class="fas fa-film"></i></div></a>
+        <a href="#"><div class="views">@item.Duration min <i class="far fa-eye"></i> </div></a>
+    </a>
 </div>
+}
+
+
 
 
 <footer class="footer-distributed">
@@ -75,14 +73,5 @@
         
     </div>
 
-<div class="card">
 
-    <a >
-        <div class="img1"><img src="@Model.ImageURL" alt="@Model.Name"></div>
-        <div class="img2"><img src="@Model.ImageURL"></div>
-        <div class="title">@Model.Name</div>
-        <div class="text">@Model.Description</div>
-        <a href="#"><div class="catagory">@Model.MovieCategory <i class="fas fa-film"></i></div></a>
-        <a href="#"><div class="views">@Model.Duration min <i class="far fa-eye"></i> </div></a>
-    </a>
-</div>
+  

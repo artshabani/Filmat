@@ -1,4 +1,5 @@
-﻿ using Filmat.Data;
+﻿using Filmat.Areas.Identity.Data;
+using Filmat.Data;
 using Filmat.Data.Services;
 using Filmat.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -6,17 +7,23 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Filmat.Controllers
 {
+
+	
+
+
 	[Authorize]
 	public class MoviesController : Controller
 	{
 		private readonly IMoviesService _service;
+		private readonly SignInManager<ApplicationUser> signInManager;
 
-
-		public MoviesController(IMoviesService service)
+		public MoviesController(IMoviesService service, SignInManager<ApplicationUser> signInManager)
 		{
-			_service = service;	
+			_service = service;
+			this.signInManager = signInManager;
 		}
 
 		
@@ -56,13 +63,19 @@ namespace Filmat.Controllers
 		}
 		[Authorize]
 		[HttpPost]
-		public async Task<IActionResult> Create([Bind("Name,Description,MovieCategory,ImageURL,VideoURL")] Movie movie)
+		public async Task<IActionResult> Create(Movie movie)
 		{
 			if (!ModelState.IsValid)
 			{
 				return View(movie);
 			}
+			_service.LogAction("Create", User: User.Identity.Name, details: movie.Name, item: nameof(MoviesController));
 			await _service.AddAsync(movie);
+			
+
+
+
+
 			return RedirectToAction(nameof(Index));
 		}
 		
@@ -86,21 +99,22 @@ namespace Filmat.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Edit(int id, Movie movie)
+		public async Task<IActionResult> Edit(int id, [Bind("Name,Description,MovieCategory,ImageURL,VideoURL")] Movie movie)
 		{
 			if (!ModelState.IsValid)
 			{
 				return View(movie);
 			}
 			await _service.UpdateAsync(id, movie);
+			_service.LogAction("Update", User: User.Identity.Name, details: movie.Name, item: nameof(MoviesController));
 			return RedirectToAction(nameof(Index));
 		}
 
 		
         public async Task<IActionResult> Delete(int id)
         {
-            var movieDetails = await _service.GetByIdAsync(id);
-            if (movieDetails == null) return View("NotFound");
+            var movieDetails = await _service.GetByIdAsync(id);			
+			if (movieDetails == null) return View("NotFound");
             return View(movieDetails);
         }
 
@@ -110,9 +124,11 @@ namespace Filmat.Controllers
             var movieDetails = await _service.GetByIdAsync(id);
             if (movieDetails == null) return View("NotFound");
 
-            await _service.DeleteAsync(id);
+			_service.LogAction("Delete", User: User.Identity.Name, details: movieDetails.Name, item: nameof(MoviesController));
+			await _service.DeleteAsync(id);
+			
 
-            return RedirectToAction(nameof(Index));
+			return RedirectToAction(nameof(Index));
         }
 
 

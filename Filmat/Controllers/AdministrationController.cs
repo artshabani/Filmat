@@ -3,6 +3,7 @@ using Filmat.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Filmat.Data.Services;
 
 namespace Filmat.Controllers
 {
@@ -11,11 +12,13 @@ namespace Filmat.Controllers
 	{
 		private readonly RoleManager<IdentityRole> roleManager;
 		private readonly UserManager<ApplicationUser> userManager;
+		private readonly IMoviesService _service;
 
-		public AdministrationController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
+		public AdministrationController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, IMoviesService service)
 		{
 			this.roleManager = roleManager;
 			this.userManager = userManager;
+			_service = service;
 		}
 
 		public async Task<IActionResult> UserDetails(string id)
@@ -47,6 +50,7 @@ namespace Filmat.Controllers
 			else
 			{
 				var result = await userManager.DeleteAsync(user);
+				_service.LogAction("Delete", User: User.Identity.Name, details: user.FullName, item: nameof(AdministrationController));
 
 				if (result.Succeeded)
 				{
@@ -75,6 +79,7 @@ namespace Filmat.Controllers
 			else
 			{
 				var result = await roleManager.DeleteAsync(role);
+				
 
 				if (result.Succeeded)
 				{
@@ -165,8 +170,9 @@ namespace Filmat.Controllers
 					user.Emri = model.Emri;
 
 					var result = await userManager.UpdateAsync(user);
-
-					if (result.Succeeded)
+				    _service.LogAction("Update", User: User.Identity.Name, details: user.FullName, item: nameof(AdministrationController));
+ 
+				if (result.Succeeded)
 					{
 						return RedirectToAction("ListUsers");
 					}
@@ -205,7 +211,9 @@ namespace Filmat.Controllers
 					};
 					IdentityResult result = await roleManager.CreateAsync(identityRole);
 
-					if (result.Succeeded)
+				    _service.LogAction("Create", User: User.Identity.Name, details: identityRole.Name, item: nameof(AdministrationController));
+
+				if (result.Succeeded)
 					{
 						return RedirectToAction("ListRoles", "Administration");
 					}
@@ -269,7 +277,9 @@ namespace Filmat.Controllers
 					role.Name = model.RoleName;
 					var result = await roleManager.UpdateAsync(role);
 
-					if (result.Succeeded)
+				    _service.LogAction("Update", User: User.Identity.Name, details: role.Name, item: nameof(AdministrationController));
+
+				if (result.Succeeded)
 					{
 						return RedirectToAction("ListRoles");
 					}

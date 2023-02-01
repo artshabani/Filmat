@@ -13,6 +13,21 @@ namespace Filmat.Data.Services
 			_context = context;
 		}
 
+		public void LogAction(string action, string? User = null, string details = null, string? item = null)
+		{
+			var log = new Log
+			{
+				Action = action,
+				Timestamp = DateTime.Now,
+				User = User,
+				Details = details,
+				Item = item
+			};
+
+			_context.Logs.Add(log);		
+			_context.SaveChanges();
+		}
+
 		public async Task AddAsync(Movie movie)
 		{
 			await _context.Movies.AddAsync(movie);
@@ -51,10 +66,12 @@ namespace Filmat.Data.Services
 
         public IEnumerable<Movie> GetMostViewedMovies()
         {
-            var mostViewedMovie = await _context.Movies
-                .OrderByDescending(m => m.ViewCount)
-                .FirstOrDefaultAsync();
-            return mostViewedMovie;
-        }
+			var mostViewedMovies = _context.Movies
+				 .OrderByDescending(m => m.ViewCount).Take(3).ToList();
+
+
+
+			return mostViewedMovies;
+		}
     }
 }
