@@ -114,7 +114,7 @@ namespace Filmat.Controllers
 					}
 					else
 					{
-						return RedirectToAction("Index", "Movies");
+						return RedirectToAction("Index", "Home");
 					}
 						
 					
