@@ -1,16 +1,72 @@
 ﻿@model Filmat.ViewModels.RegisterViewModel
 
-
 @{
     ViewBag.Title = "User Registration";
+    Layout = null;
 }
+@*
+@section Styles {}*@
+<link href="@Url.Content("~/css/Register.css")" rel="stylesheet" />
 
-@section Styles {
-    <link href="@Url.Content("~/css/test.css")" rel="stylesheet"/>
-}
 
+<div class="container">
+     <h1 class="form-title">Registration</h1>
+        <form method="post">
+            <div class="main-user-info">
+                <div class="user-input-box">
+                    <label for="username">Username</label>
+                    <input asp-for="FullName"
+                       type="text"
+                       id="fullName"
+                       name="fullName"
+                       placeholder="Enter Username" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="user-input-box">
+                    <label for="fullname">Full Name</label>
+                    <input asp-for="Emri"
+                       type="text"
+                       id="username"
+                       name="username"
+                       placeholder="Enter Full Name" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="user-input-box">
+                    <label for="email">Email</label>
+                    <input asp-for="Email" 
+                       type="text"
+                       id="email"
+                       name="email"
+                       placeholder="Enter Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
 
-<section class="vh-100 bg-image"
+                <div class="user-input-box">
+                    <label for="password">Password</label>
+                    <input asp-for="Password"
+                       type="password"
+                       id="password"
+                       name="password"
+                       placeholder="Enter Password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="user-input-box">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input asp-for="ConfirmPassword"
+                       type="password"
+                       id="confirmPassword"
+                       name="confirmPassword"
+                       placeholder="Confirm Password" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-submit-btn">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+
+@*<section class="vh-100 bg-image"
   style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
   <div class="mask d-flex align-items-center h-100 gradient-custom-3">
     <div class="container h-100">
@@ -69,7 +125,7 @@
     </div>
   </div>
 </section>
-
+*@
 
 
 
