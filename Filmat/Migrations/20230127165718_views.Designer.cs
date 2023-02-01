@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Filmat.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230127131147_addedViewCount")]
-    partial class addedViewCount
+    [Migration("20230127165718_views")]
+    partial class views
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

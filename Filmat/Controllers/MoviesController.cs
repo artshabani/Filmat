@@ -131,11 +131,12 @@ namespace Filmat.Controllers
 			}
 			else
 			{
-                movie.ViewCount++;
-                await _service.UpdateAsync(id, movie);
-                return View(movie);
-                
-            }
+
+				movie.ViewCount++;
+				await _service.UpdateAsync(id, movie);
+				return View(movie);
+				
+			}
             
         }
 

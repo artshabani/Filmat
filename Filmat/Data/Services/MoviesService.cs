@@ -49,12 +49,14 @@ namespace Filmat.Data.Services
 
         //get the most viewed movie
 
-        public async Task<Movie> GetMostViewedMovie()
+        public IEnumerable<Movie> GetMostViewedMovies()
         {
-            var mostViewedMovie = await _context.Movies
-                .OrderByDescending(m => m.ViewCount)
-                .FirstOrDefaultAsync();
-            return mostViewedMovie;
+			var mostViewedMovies = _context.Movies
+				.OrderByDescending(m => m.ViewCount).Take(3).ToList();
+
+			
+
+			return mostViewedMovies;
         }
     }
 }

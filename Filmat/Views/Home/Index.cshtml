@@ -1,5 +1,4 @@
-﻿@model Movie
-
+﻿@model IEnumerable<Movie>
 @{
 ViewData["Title"] = "Home Page";
 }
@@ -14,14 +13,36 @@ ViewData["Title"] = "Home Page";
 </div>
 
 
+@*@foreach (var item in Model)
+    {
+        
 <div class="card">
-
-    <a >
-        <div class="img1"><img src="@Model.ImageURL" alt="@Model.Name"></div>
-        <div class="img2"><img src="@Model.ImageURL"></div>
-        <div class="title">@Model.Name</div>
-        <div class="text">@Model.Description</div>
-        <a href="#"><div class="catagory">@Model.MovieCategory <i class="fas fa-film"></i></div></a>
-        <a href="#"><div class="views">@Model.Duration min <i class="far fa-eye"></i> </div></a>
-    </a>
+    
+  <a asp-controller="Movies" asp-action="PlayMovie" asp-route-id="@item.Id">
+    <div class="img1"><img src="@item.ImageURL" alt="@item.Name" ></div>
+    <div class="img2"><img src="@item.ImageURL"></div>
+    <div class="title">@item.Name</div>
+    <div class="text">@item.Description</div>
+    <a href="#"><div class="catagory">@item.MovieCategory <i class="fas fa-film"></i></div></a>
+    <a href="#"><div class="views">@item.Duration min <i class="far fa-eye"></i> </div></a>
+  </a>
 </div>
+
+    }*@
+
+	@foreach(var item in Model){
+	
+    <div class="card">
+    
+  <a asp-action="PlayMovie" asp-route-id="@item.Id">
+    <div class="img1"><img src="@item.ImageURL" alt="@item.Name" ></div>
+    <div class="img2"><img src="@item.ImageURL"></div>
+    <div class="title">@item.Name</div>
+    <div class="text">@item.Description</div>
+    <a href="#"><div class="catagory">@item.MovieCategory <i class="fas fa-film"></i></div></a>
+    <a href="#"><div class="views">@item.Duration min <i class="far fa-eye"></i> </div></a>
+  </a>
+</div>
+
+		}
+		

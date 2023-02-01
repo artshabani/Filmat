@@ -20,7 +20,7 @@ namespace Filmat.Models
 
 		public string VideoURL { get; set; }
 
-		public int ViewCount { get; set; }
+		public int ViewCount { get; set; } = 0;
 
 
 		

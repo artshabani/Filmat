@@ -15,16 +15,13 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
 
 
     public DbSet<Movie> Movies { get; set; }
+
+    public DbSet<Comment> Comments { get; set; }    
     
     
 
 }
 
-//protected override void OnModelCreating(ModelBuilder builder)
-//{
-//	base.OnModelCreating(builder);
-//	builder.Seed();
 
-//}
-//}
+
 
