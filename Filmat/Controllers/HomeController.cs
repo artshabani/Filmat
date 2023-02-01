@@ -18,7 +18,7 @@ namespace Filmat.Controllers
 
 		public async Task<IActionResult> Index()  //most viewed movie
 		{
-            var mostViewed =  _service.GetMostViewedMovies();
+            var mostViewed = await _service.GetMostViewedMovie();
 			return View(mostViewed);
         }
 		

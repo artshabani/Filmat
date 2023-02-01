@@ -1,48 +1,88 @@
-﻿@model IEnumerable<Movie>
+﻿@model Movie
+
 @{
-ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home Page";
+    Layout = null;
 }
+ <link href="@Url.Content("~/css/movies.css")" rel="stylesheet" />
+ <link href="@Url.Content("~/css/HomePage.css")" rel="stylesheet" />
 
-@section Styles {
-    <link href="@Url.Content("~/css/movies.css")" rel="stylesheet" />
-}
+    
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+     <div class="container">
+        <nav class="navbar">
+            <div class="left">
+                <img src="../css/images/frame-2.png" alt="logo">
+            </div>
+            @*<div class="right">
+                @*<select name="language" class="language">
+                    <option value="English">English</option>
+                    <option value="Albanian">Albanian</option>
+                </select>
+                
+            </div>*@
+        </nav>
+
+        <div class="title">
+            <div class="content">
+                <h1>Watch your favorite movies, TV shows and more.</h1>
+                <div class="login">
+                    <h3>Ready to watch? Enter your email and get access to unlimited fun!</h3>
+                    <div class="email">
+                        <button><a asp-controller="Account" asp-action="Register">Sign In</a></button>
+                        <button><a asp-controller="Account" asp-action="Login">Log In</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+
+<div class="style-cards">
+    @{
+        var mostViewedMovies = Model;
+        var mostViewedMovie = mostViewedMovies.FirstOrDefault();
+    }
+    <div class="card-0">
+        <div class="desc-0">
+            <h1>The most viewed movie is:</h1>
+            <h2><i>@mostViewedMovie.Name</i></h2>
+        </div>
+        <a asp-action="Index" asp-route-id="@mostViewedMovie.Id">
+            <img src="@mostViewedMovie.ImageURL" alt="@mostViewedMovie.Name">
+        </a>
+    </div>
 </div>
 
 
-@*@foreach (var item in Model)
-    {
+<footer class="footer-distributed">
+
+    <div class="footer-left">
+        <h3>Filma<span>Njezetepese</span></h3>
+
+        <p class="footer-links">
+            <a href="#">Home</a>
+            
+            <a href="#">About</a>
+        </p>
+
+        <p class="footer-company-name">Copyright © 2023 <strong>Filma25</strong> All rights reserved</p>
+    </div>
+
+    <div class="footer-center">
         
+    </div>
+
 <div class="card">
-    
-  <a asp-controller="Movies" asp-action="PlayMovie" asp-route-id="@item.Id">
-    <div class="img1"><img src="@item.ImageURL" alt="@item.Name" ></div>
-    <div class="img2"><img src="@item.ImageURL"></div>
-    <div class="title">@item.Name</div>
-    <div class="text">@item.Description</div>
-    <a href="#"><div class="catagory">@item.MovieCategory <i class="fas fa-film"></i></div></a>
-    <a href="#"><div class="views">@item.Duration min <i class="far fa-eye"></i> </div></a>
-  </a>
+
+    <a >
+        <div class="img1"><img src="@Model.ImageURL" alt="@Model.Name"></div>
+        <div class="img2"><img src="@Model.ImageURL"></div>
+        <div class="title">@Model.Name</div>
+        <div class="text">@Model.Description</div>
+        <a href="#"><div class="catagory">@Model.MovieCategory <i class="fas fa-film"></i></div></a>
+        <a href="#"><div class="views">@Model.Duration min <i class="far fa-eye"></i> </div></a>
+    </a>
 </div>
-
-    }*@
-
-	@foreach(var item in Model){
-	
-    <div class="card">
-    
-  <a asp-action="PlayMovie" asp-route-id="@item.Id">
-    <div class="img1"><img src="@item.ImageURL" alt="@item.Name" ></div>
-    <div class="img2"><img src="@item.ImageURL"></div>
-    <div class="title">@item.Name</div>
-    <div class="text">@item.Description</div>
-    <a href="#"><div class="catagory">@item.MovieCategory <i class="fas fa-film"></i></div></a>
-    <a href="#"><div class="views">@item.Duration min <i class="far fa-eye"></i> </div></a>
-  </a>
-</div>
-
-		}
-		
