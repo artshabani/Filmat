@@ -1,0 +1,173 @@
+﻿@model IEnumerable<Logs>
+
+@{
+    ViewData["Title"] = "List of Movies";
+
+    //  Pager pager = new Pager();
+
+    //int pageNo = 0;
+
+    //if(ViewBag.Pager != null)
+    //{
+    //    pager = ViewBag.Pager;
+    //    pageNo = pager.CurrentPage;
+    //}
+}
+
+
+
+
+<h3>Logs for Users and Movies:</h3>
+<br />
+<br />
+<br />
+
+<table class="table">
+
+
+
+    <thead>
+        <tr>
+            <th scope="col">Actor</th>
+            <th scope="col">Action</th>
+            <th scope="col">Entity</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date/Time</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+
+
+
+
+            if (item.Item.Equals("AdministrationController"))
+            {
+
+                if (item.Action.Equals("Create"))
+                {
+                    <tr class="table-success">
+                        <th scope="row">@item.User</th>
+                        <th>Created</th>
+                        <th>User</th>
+                        <th>@item.Details</th>
+                        <th>@item.Timestamp</th>
+                    </tr>
+                }
+
+                if (item.Action.Equals("Update"))
+                {
+                    <tr class="table-warning">
+                        <th scope="row">@item.User</th>
+                        <th>Updated</th>
+                        <th>User</th>
+                        <th>@item.Details</th>
+                        <th>@item.Timestamp</th>
+                    </tr>
+                }
+                if (item.Action.Equals("Delete"))
+                {
+                    <tr class="table-danger">
+                        <th scope="row">@item.User</th>
+                        <th>Deleted</th>
+                        <th>User</th>
+                        <th>@item.Details</th>
+                        <th>@item.Timestamp</th>
+                    </tr>
+
+                }
+
+
+            }
+
+            if (item.Item.Equals("MoviesController"))
+            {
+
+                if (item.Action.Equals("Create"))
+                {
+                    <tr class="table-success">
+                        <th scope="row">@item.User</th>
+                        <th>Created</th>
+                        <th>Movie</th>
+                        <th>@item.Details</th>
+                        <th>@item.Timestamp</th>
+                    </tr>
+                }
+
+                if (item.Action.Equals("Update"))
+                {
+                    <tr class="table-warning">
+                        <th scope="row">@item.User</th>
+                        <th>Updated</th>
+                        <th>Movie</th>
+                        <th>@item.Details</th>
+                        <th>@item.Timestamp</th>
+                    </tr>
+                }
+                if (item.Action.Equals("Delete"))
+                {
+                    <tr class="table-danger">
+                        <th scope="row">@item.User</th>
+                        <th>Deleted</th>
+                        <th>Movie</th>
+                        <th>@item.Details</th>
+                        <th>@item.Timestamp</th>
+                    </tr>
+
+                }
+
+
+            }
+
+
+
+
+        }
+
+
+    </tbody>
+
+
+</table>
+
+@* <div class="container"> asdasdadasd
+    @if (pager.TotalPages > 0)
+    {
+        <ul class="pagination justify-content-end">
+
+            @if (pager.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Logs" asp-action="Index" asp-route-pg="1">First</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Logs" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
+                </li>
+            }
+
+
+            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+            {
+                <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-controller="Logs" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                </li>
+
+            }
+            @if (pager.CurrentPage < pager.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Logs" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+                </li>
+                <li>
+                    <a class="page-link" asp-controller="Logs" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
+                </li>
+            }
+
+
+        </ul>
+    }
+</div>*@

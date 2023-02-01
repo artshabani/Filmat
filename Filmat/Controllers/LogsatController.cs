@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 namespace Filmat.Controllers
 {
 	[Authorize(Roles = "Admin")]
-	public class LogsController : Controller
+	public class LogsatController : Controller
 	{
 
 		private readonly AppDbContext _context;
 
-		public LogsController(AppDbContext context)
+		public LogsatController(AppDbContext context)
 		{
 			_context =	context;
 		}

@@ -16,7 +16,7 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
 
     public DbSet<Movie> Movies { get; set; }
 
-    public DbSet<Log> Logs { get; set; }
+    public DbSet<Logs> Logs { get; set; }
 
 
 

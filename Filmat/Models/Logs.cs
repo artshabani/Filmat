@@ -1,6 +1,6 @@
 ﻿namespace Filmat.Models
 {
-    public class Log
+    public class Logs
     {
         public int Id { get; set; }
         public string? Action { get; set; }

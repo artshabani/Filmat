@@ -15,7 +15,7 @@ namespace Filmat.Data.Services
 
 		public void LogAction(string action, string? User = null, string details = null, string? item = null)
 		{
-			var log = new Log
+			var log = new Logs
 			{
 				Action = action,
 				Timestamp = DateTime.Now,

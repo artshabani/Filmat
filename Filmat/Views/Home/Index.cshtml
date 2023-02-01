@@ -38,10 +38,12 @@
         </div>
     </div>
 
+    <h1>Most viewed movies are:</h1>
+
     @foreach(var item in Model){
 <div class="card">
-
-    <a >
+ 
+    <a>
         <div class="img1"><img src="@item.ImageURL" alt="@item.Name"></div>
         <div class="img2"><img src="@item.ImageURL"></div>
         <div class="title">@item.Name</div>
