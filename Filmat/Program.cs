@@ -49,7 +49,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
 	name: "default",
-	pattern: "{controller=Logsat}/{action=Index}/{id?}");
+	pattern: "{controller=Movies}/{action=Index}/{id?}");
 
 
 

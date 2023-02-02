@@ -4,7 +4,7 @@ namespace Filmat.Data.Services
 {
 	public interface IMoviesService
 	{
-
+		public IEnumerable<Movie> SearchMovies(string searchQuery);
 		void LogAction(string action, string? User = null, string details = null, string item = null);
 		Task<IEnumerable<Movie>> GetAllAsync();
 		Task<Movie> GetByIdAsync(int id);

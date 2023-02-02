@@ -89,3 +89,7 @@ body {
             background: #9C77C8;
             color: rgb(255, 255, 255);
         }
+
+li {
+    color: red;
+}

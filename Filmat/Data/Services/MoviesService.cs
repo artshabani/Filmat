@@ -24,7 +24,7 @@ namespace Filmat.Data.Services
 				Item = item
 			};
 
-			_context.Logs.Add(log);		
+			_context.Logs.Add(log);
 			_context.SaveChanges();
 		}
 
@@ -53,7 +53,7 @@ namespace Filmat.Data.Services
 			return result;
 		}
 
-		
+
 
 		public async Task<Movie> UpdateAsync(int id, Movie newMovie)
 		{
@@ -62,10 +62,10 @@ namespace Filmat.Data.Services
 			return newMovie;
 		}
 
-        //get the most viewed movie
+		//get the most viewed movie
 
-        public IEnumerable<Movie> GetMostViewedMovies()
-        {
+		public IEnumerable<Movie> GetMostViewedMovies()
+		{
 			var mostViewedMovies = _context.Movies
 				 .OrderByDescending(m => m.ViewCount).Take(3).ToList();
 
@@ -73,5 +73,15 @@ namespace Filmat.Data.Services
 
 			return mostViewedMovies;
 		}
-    }
+
+		public IEnumerable<Movie> SearchMovies(string searchQuery)
+		{
+			return _context.Movies.AsEnumerable().Where(m => m.Name.Contains(searchQuery)
+			|| m.Description.Contains(searchQuery)
+			|| m.MovieCategory.ToString().Contains(searchQuery)
+			|| m.Duration.ToString().Contains(searchQuery)).ToList();
+										 
+		}
+	}
+
 }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Filmat.Controllers
 {
 
-	
+
 
 
 	[Authorize]
@@ -26,10 +26,10 @@ namespace Filmat.Controllers
 			this.signInManager = signInManager;
 		}
 
-		
+
 
 		public async Task<IActionResult> Index(int pg = 1)
-		{ 
+		{
 			var data = await _service.GetAllAsync();
 
 			const int pageSize = 5;
@@ -50,9 +50,9 @@ namespace Filmat.Controllers
 			this.ViewBag.Pager = pager;
 
 
-			return  View(data2);
+			return View(data2);
 
-			
+
 
 		}
 		[Authorize]
@@ -71,14 +71,14 @@ namespace Filmat.Controllers
 			}
 			_service.LogAction("Create", User: User.Identity.Name, details: movie.Name, item: nameof(MoviesController));
 			await _service.AddAsync(movie);
-			
+
 
 
 
 
 			return RedirectToAction(nameof(Index));
 		}
-		
+
 		//Get:  Clients/Details/1
 
 		public async Task<IActionResult> Details(int id)
@@ -110,34 +110,34 @@ namespace Filmat.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
-		
-        public async Task<IActionResult> Delete(int id)
-        {
-            var movieDetails = await _service.GetByIdAsync(id);			
-			if (movieDetails == null) return View("NotFound");
-            return View(movieDetails);
-        }
 
-        [HttpPost]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var movieDetails = await _service.GetByIdAsync(id);
-            if (movieDetails == null) return View("NotFound");
+		public async Task<IActionResult> Delete(int id)
+		{
+			var movieDetails = await _service.GetByIdAsync(id);
+			if (movieDetails == null) return View("NotFound");
+			return View(movieDetails);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> DeleteConfirmed(int id)
+		{
+			var movieDetails = await _service.GetByIdAsync(id);
+			if (movieDetails == null) return View("NotFound");
 
 			_service.LogAction("Delete", User: User.Identity.Name, details: movieDetails.Name, item: nameof(MoviesController));
 			await _service.DeleteAsync(id);
-			
+
 
 			return RedirectToAction(nameof(Index));
-        }
+		}
 
 
 
 
-        public async Task<IActionResult> PlayMovie(int id)
+		public async Task<IActionResult> PlayMovie(int id)
 		{
 			var movie = await _service.GetByIdAsync(id);
-			
+
 
 
 			if (movie == null)
@@ -151,10 +151,10 @@ namespace Filmat.Controllers
 				movie.ViewCount++;
 				await _service.UpdateAsync(id, movie);
 				return View(movie);
-				
+
 			}
-            
-        }
+
+		}
 
 		[HttpGet]
 		public async Task<ActionResult> MoviesByCategory(string category)
@@ -164,8 +164,15 @@ namespace Filmat.Controllers
 			return View(mc);
 		}
 
-		
 
+		[HttpPost]
+		public IActionResult Search(string searchQuery)
+		{
+
+			var movies = _service.SearchMovies(searchQuery);
+			return View(movies);
+
+		}
 
 
 

@@ -73,7 +73,7 @@ namespace Filmat.Controllers
 						
 					}
 						await signInManager.SignInAsync(user, isPersistent: false);
-						return RedirectToAction("Index", "Home");
+						return RedirectToAction("Index", "Movies");
 				}
 
 				foreach (var error in result.Errors)

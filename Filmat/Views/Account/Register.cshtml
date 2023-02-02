@@ -12,7 +12,10 @@
 <div class="container">
      <h1 class="form-title">Registration</h1>
         <form method="post">
+            @*<div style="color:red;" asp-validation-summary="All" class="red"></div>*@
             <div class="main-user-info">
+
+                
                 <div class="user-input-box">
                     <label for="username">Username</label>
                     <input asp-for="FullName"
@@ -20,17 +23,17 @@
                        id="fullName"
                        name="fullName"
                        placeholder="Enter Username" />
-                    <span asp-validation-for="FullName" class="text-danger"></span>
+                    <span style="color:red;" asp-validation-for="FullName" class="text-danger"></span>
                 </div>
+
+
                 <div class="user-input-box">
-                    <label for="fullname">Full Name</label>
-                    <input asp-for="Emri"
-                       type="text"
-                       id="username"
-                       name="username"
-                       placeholder="Enter Full Name" />
-                    <span asp-validation-for="FullName" class="text-danger"></span>
+                  <label class="form-label">Full Name</label>
+                  <input placeholder="Enter Full Name" asp-for="Emri" type="text" id="form3Example1cg" class="form-control form-control-lg" />  
+                  <span style="color:red;" asp-validation-for="Emri" class="text-danger"></span>
                 </div>
+
+
                 <div class="user-input-box">
                     <label for="email">Email</label>
                     <input asp-for="Email" 
@@ -38,7 +41,7 @@
                        id="email"
                        name="email"
                        placeholder="Enter Email" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <span style="color:red;" asp-validation-for="Email" class="text-danger"></span>
                 </div>
 
                 <div class="user-input-box">
@@ -48,7 +51,7 @@
                        id="password"
                        name="password"
                        placeholder="Enter Password" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <span style="color:red;" asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="user-input-box">
                     <label for="confirmPassword">Confirm Password</label>
@@ -57,7 +60,7 @@
                        id="confirmPassword"
                        name="confirmPassword"
                        placeholder="Confirm Password" />
-                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    <span style="color:red;" asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-submit-btn">
