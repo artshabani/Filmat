@@ -11,9 +11,6 @@ using Microsoft.EntityFrameworkCore;
 namespace Filmat.Controllers
 {
 
-
-
-
 	[Authorize]
 	public class MoviesController : Controller
 	{

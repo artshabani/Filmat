@@ -1,25 +1,142 @@
 ﻿@model IEnumerable<Movie>
-@inject SignInManager<ApplicationUser> signInManager;
+
 
 
 @{
     ViewData["Title"] = "List of Movies";
 
-      Pager pager = new Pager();
 
-    int pageNo = 0;
-
-    if(ViewBag.Pager != null)
-    {
-        pager = ViewBag.Pager;
-        pageNo = pager.CurrentPage;
-    }
 }
 
 @section Styles {
-    <link href="@Url.Content("~/css/movies.css")" rel="stylesheet"/>
+
+
+    <link href="@Url.Content("~/css/MoviesTest.css")" rel="stylesheet" />
+
+
 }
 
+    <form method="post" asp-action="Search" class="form-inline my-2 my-lg-0 display-left">
+        <input name="searchQuery" style=" color:white; margin-left:38%;background:transparent; border:0.5px solid white;" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button style="margin-top:0.7534983853606028vh;" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <div class="container p-0">
+
+        
+
+        <div class="container-fluid" style="position: absolute; left:0px">
+            <div class="row" style="width:100%; margin-left: position:absolute; left:0px; ">
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 movie_list">
+                <div class="pt-8 pb-2 mb-3">
+
+
+                    <div class="row" style=" margin-top:-2%;margin-right: -15px; margin-left: 11%; width: 115%;">
+                    @foreach (var item in Model)
+                    {
+                        <!-- Movie Card Start -->
+                        <div class="card-view">
+                            <div style="background: url(@item.ImageURL); background-size:contain;" class="card-header avengerEndgame">
+                                <div class="card-header-icon">
+                                    <a asp-action="PlayMovie" asp-route-id="@item.Id">
+                                        <i class="material-icons header-icon">play_arrow</i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-movie-content">
+                                <div class="card-movie-content-head">
+                                    <a href="#">
+                                        <h3 class="card-movie-title">@item.Name</h3>
+                                    </a>
+                                    <div class="ratings">@item.ViewCount</div>
+                                </div>
+                                <div class="card-movie-info">
+                                    <div class="movie-running-time">
+                                        <label>Last update</label>
+                                        <span>2023</span>
+                                    </div>
+                                    <div class="movie-running-time">
+                                        <label>Running time</label>
+                                        <span>@item.Duration</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- Movie Card End -->
+
+                </div>
+            </div>
+
+            </main>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+@*@model IEnumerable<Movie>
+@inject SignInManager<ApplicationUser> signInManager;
+
+
+@{
+    ViewData["Title"] = "List of Movies";
+    Layout = null;
+
+    //  Pager pager = new Pager();
+
+    //int pageNo = 0;
+
+    //if(ViewBag.Pager != null)
+    //{
+    //    pager = ViewBag.Pager;
+    //    pageNo = pager.CurrentPage;
+    //}
+}
+@*
+@section Styles {}
+ 
+<link href="@Url.Content("~/css/MoviesTest.css")" rel="stylesheet"/>
+
+
+
+@foreach (var item in Model)
+{
+    <div class="container">
+        <div class="card">
+            <div class="front">
+                <img src="@item.ImageURL" alt="@item.Name">
+            </div>
+            <div class="back">
+                 <h1>@item.Name</h1>
+                 <p>@item.Description</p>
+            </div>
+            </div>
+    </div>
+
+}*@
+
+    @*<body>
+    @foreach (var item in Model)
+    {
+        <div class="frem">
+            <div class="center-cant">
+                <img src="@item.ImageURL" alt="@item.Name">
+                <div class="row">
+                    <p>@item.Name</p>
+                    <h2>@item.Duration</h2>
+                </div>
+            </div>
+        </div>
+    }
+    </body>*@
+@*
   
 <div class="container">
     <div class="movie-card">
@@ -57,8 +174,8 @@
            @* <div>
                 <h1>Views: @item.ViewCount</h1>
             </div>*@
-            }
-
+            
+@*
     </div>
  </div>
 
@@ -106,4 +223,4 @@
 
         </ul>
     }
-</div>
+</div>*@
