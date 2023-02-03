@@ -22,7 +22,9 @@ body {
     z-index: -1;
 }
 
-.container .navbar {
+
+
+/*.container .navbar {
     height: 100px;
     display: flex;
 }
@@ -37,7 +39,7 @@ body {
             height: 100px;
             position: absolute;
             left: 35px;
-        }
+        }*/
 
     /*.container .navbar .right {
         display: flex;
