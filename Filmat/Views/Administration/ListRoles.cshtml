@@ -4,6 +4,12 @@
         ViewBag.Title = "All Roles";
     }
 
+    @section Styles{
+    <link href="@Url.Content("~/css/PlayMovie.css")" rel="stylesheet" />
+
+}
+
+
     <h1>All Roles</h1>
     
     @if(Model.Any()){

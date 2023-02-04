@@ -2,6 +2,9 @@
 	color: #566787;
 	background: #f7f5f2;
 	font-family: 'Roboto', sans-serif;
+	background-image: url(../images/newbackground-blurred.jpg);
+	background-size: cover;
+	background-position: center;
 }
 
 

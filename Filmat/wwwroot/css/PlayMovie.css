@@ -1,3 +1,10 @@
 ﻿body {
-	background: url(../images/blured.jpg);
+	background-image: url(../images/newbackground.jpeg);
+	background-size: cover;
+	background-position: center;
+	
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: white;
 }

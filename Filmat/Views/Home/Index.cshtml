@@ -1,4 +1,84 @@
 ﻿@model IEnumerable<Movie>
+@inject SignInManager<ApplicationUser> signInManager;
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = null;
+}
+<link href="@Url.Content("~/css/homepageTest.css")" rel="stylesheet" />
+
+<div class="banner">
+    <div class="navbar">
+        <img src="~/images/logofinal2.png" class="logo"/>
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Movies" asp-action="Index">Movies</a></li>
+
+            @if(signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+
+            <li><a asp-controller="Administration" asp-action="ListUsers">Users</a></li>
+            <li><a asp-controller="Administration" asp-action="ListRoles">Roles</a></li>
+            <li><a asp-controller="Logsat" asp-action="Index">Logs</a></li>
+            
+            }
+
+             @if (signInManager.IsSignedIn(User))
+                        {
+                            <li>
+                                <form method="post" asp-action="Logout" asp-controller="Account">
+                                <button class="buttoni" type="submit">
+                                        Logout @User.Identity.Name
+                                    </button>
+                                </form>
+                            </li>
+                        }
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Watch your favorite movies,<br /> TV shows and more.</h1>
+        <h3>Ready to watch? Enter your email and get access to unlimited fun!</h3>
+        <div>
+            <button class="button" type="submit" onclick="location.href='@Url.Action("Register", "Account")'"><span></span>Sign In</button>
+            <button class="button" type="submit" onclick="location.href='@Url.Action("Login", "Account")'"><span></span>Log In</button>
+        </div>
+        <h1 style="color: #05b4e4; padding-top:10%; text-shadow: 0 0 25px #05b4e4;">Top 3 movies:</h1>
+    </div>
+    
+</div> 
+
+<div>
+
+    
+   
+    <div class="anisa">
+        
+        @foreach (var item in Model)
+        {
+            <a asp-controller="Movies" asp-action="PlayMovie" asp-route-id="@item.Id">
+        <div class="frem">
+            <div class="center-cant">
+                    <img src="@item.ImageURL" alt="">
+                <div class="row">
+                    <p>@item.Name</p>
+                    <h2>@item.ViewCount views</h2>
+                </div>
+            </div>
+        </div>
+      </a>
+        }
+    </div>
+  
+
+    
+
+</div>
+
+
+
+
+@*@model IEnumerable<Movie>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -61,4 +141,4 @@
     </div>
 
 
-  
+  *@

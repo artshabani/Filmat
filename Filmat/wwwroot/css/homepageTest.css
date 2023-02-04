@@ -1,0 +1,265 @@
+﻿*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.banner{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../images/newbackground-blurred.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.navbar{
+    width: 90%;
+    margin: auto;
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.logo{
+    width: 120px;
+    cursor: pointer;
+    transition:0.05s;
+}
+
+.logo:hover {
+    width: 120px;
+    cursor: pointer;
+    transform: scale(1.1);
+    transition:0.2s;
+}
+
+.navbar ul li{
+    list-style: none;
+    display: inline-block;
+    margin:0 20px;
+    position: relative;
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color:#fff;
+    text-transform: uppercase;
+    transition: 0.3s ease-out;
+}
+
+    .navbar ul li a:hover {
+        color: #05b4e4;
+    }
+
+    .navbar ul li::after {
+        content: '';
+        height: 3px;
+        width: 0;
+        background: #d400d4;
+        position: absolute;
+        left: 0;
+        /*bottom: 30px - nven top*/
+        top: 30px;
+        transition: 0.3s;
+    }
+
+.navbar ul li:hover::after {
+    width:100%;
+
+}
+
+li a:hover {
+    color: #05b4e4;
+    transition:0.2s ease-in;
+}
+.content{
+    width:100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;
+}
+
+.content h1{
+    font-size: 50px;
+    margin-top: 80px;
+   
+}
+
+
+
+    .content h3 {
+        margin: 20px auto;
+        font-weight: 100;
+        line-height: 25px;
+    }
+
+.button {
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #d400d4;
+    box-shadow: 0 0 50px #d400d4;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-size: 17px;
+}
+
+.buttoni {
+    width: 155px;
+    padding: 15px 0;
+    text-align: center;
+    margin: -25px 0px;
+    border-radius: 25px;
+    border: 0.5px solid #d400d4;
+    box-shadow: 0 0 15px #d400d4;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-size: 17px;
+}
+
+
+span {
+    background: #d400d4;
+    height: 100%;
+    width: 0;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+
+button:hover span{
+    width: 100%;
+}
+
+.anisa {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    background-image: url(../images/newbackground-blurred.jpg);
+    background-size: cover;
+    background-position: center;
+    height:100%;
+}
+
+.frem {
+    position: relative;
+    width: 300px;
+    height: 500px;
+    /* background: white; */
+}
+
+    .frem::before {
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: -4px;
+        right: -4px;
+        bottom: -4px;
+        transform: skewX(2deg) skewY(4deg);
+        background: linear-gradient(315deg, #00ccff, #0e1538, #d400d4);
+    }
+
+    .frem::after {
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: -4px;
+        right: -4px;
+        bottom: -4px;
+        transform: skewX(2deg) skewY(4deg);
+        background: linear-gradient(315deg, #00ccff, #0e1538, #d400d4);
+        filter: blur(50px);
+    }
+
+.center-cant {
+    width: 300px;
+    height: 500px;
+    background: #0e1538;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    padding: 6px;
+    border-radius: 0px 12px 0px 12px;
+    overflow: hidden;
+
+    transition: 0.2 ease-in-out;
+}
+
+    .center-cant:hover {
+        transform: scale(1.05);
+        /*transition: 0.3s ease-in;*/
+    }
+
+    .center-cant img {
+        width: 100%;
+        height: 414px;
+        object-fit: cover;
+        border-radius: 0px 12px 0px 12px;
+    }
+
+    .center-cant .row {
+        width: 100%;
+        height: 4rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+        .center-cant .row p {
+            color: white;
+            letter-spacing: 1px;
+            font-size: 20px;
+            font-weight: 600;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .center-cant .row h2 {
+            color: #00ffd7;
+            font-size: 18px;
+            padding: 12px;
+            background: #00000047;
+            letter-spacing: 1px;
+            border-radius: 0px 12px 0px 12px;
+        }
+
+
+button:hover{
+    border: none;
+
+}
+
+.about-us-img {
+    width: 500px;
+    margin: 50px auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #7A32CF;
+}
+
+.content p {
+    font-size: 20px;
+    margin: 20px auto;
+    text-align: left;
+    width: 80%;
+    color: #fff;
+    line-height: 35px;
+}

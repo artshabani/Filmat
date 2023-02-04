@@ -14,6 +14,10 @@
     //}
 }
 
+@section Styles{
+    <link href="@Url.Content("~/css/PlayMovie.css")" rel="stylesheet" />
+
+}
 
 
 
@@ -28,16 +32,16 @@
 
     <thead>
         <tr>
-            <th scope="col">Actor</th>
-            <th scope="col">Action</th>
-            <th scope="col">Entity</th>
-            <th scope="col">Name</th>
-            <th scope="col">Date/Time</th>
+            <th style="color:white" scope="col">Actor</th>
+            <th style="color:white" scope="col">Action</th>
+            <th style="color:white" scope="col">Entity</th>
+            <th style="color:white" scope="col">Name</th>
+            <th style="color:white" scope="col">Date/Time</th>
         </tr>
     </thead>
 
 
-    <tbody>
+    <tbody style="border:1.5px solid white">
 
         @foreach (var item in Model)
         {
