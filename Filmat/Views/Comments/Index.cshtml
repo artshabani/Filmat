@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Comment>
+
+    @section Styles{
+    <link href="@Url.Content("~/css/PlayMovie.css")" rel="stylesheet" />
+
+}
+
+
+
+    <div class="card card-outline-secondary my-4" style="border: 1px solid white">
+        <div style="color:black" class="card-header">
+            <b>Product Reviews</b>
+        </div>
+
+       
+        <div class="card-body">
+
+          @foreach(var item in Model){
+
+            <b><p>@item.Text</p></b>
+            <b><small class="text-muted">Posted by <span style="color:#05b4e4">@item.UserID</span> on @item.TimeStamp</small></b>
+            <hr />
+
+           }
+                <form method="Post" asp-action="LeaveComment">
+                    <div class="form-group">
+                
+                        <label>Write Your Comment</label>
+                        <textarea class="form-control" rows="3" name="text" placeholder="Write your comment here."></textarea>
+                
+                    </div>
+                
+                    <button type="submit" class="btn btn-success">Leave a Comment</button>
+
+
+
+                    </form>
+
+
+
+        </div>
+
+    </div>
+
+

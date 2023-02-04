@@ -1,18 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using Filmat.Models;
 
 namespace Filmat.Models
 {
 	public class Comment
 	{
-
-		public int CommentId { get; set; }
-
-		public string CommentText { get; set; }
-
-		public DateTime? CreatedOn { get; set; }
-
 		
-		public ApplicationUser User { get; set; }
+		
+		public int Id { get; set; }
+
+		public string Text { get; set; }
+
+		public string UserID { get; set; }
+
+		public DateTime TimeStamp { get; set; }
 
 	}
 }

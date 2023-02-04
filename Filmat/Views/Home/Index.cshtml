@@ -11,7 +11,7 @@
     <div class="navbar">
         <img src="~/images/logofinal2.png" class="logo"/>
         <ul>
-            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            
             <li><a asp-controller="Movies" asp-action="Index">Movies</a></li>
 
             @if(signInManager.IsSignedIn(User) && User.IsInRole("Admin"))

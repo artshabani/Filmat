@@ -18,6 +18,8 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
 
     public DbSet<Logs> Logs { get; set; }
 
+    public DbSet<Comment> Comments { get; set; }
+
 
 
 }
