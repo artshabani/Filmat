@@ -5,34 +5,23 @@
     ViewData["Title"] = "Home Page";
     Layout = null;
 }
-<link href="@Url.Content("~/css/homepageTest.css")" rel="stylesheet" />
+<link href="@Url.Content("~/css/homepage.css")" rel="stylesheet" />
 
 <div class="banner">
     <div class="navbar">
         <img src="~/images/logofinal2.png" class="logo"/>
         <ul>
-            
-            <li><a asp-controller="Movies" asp-action="Index">Movies</a></li>
-
-            @if(signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-            {
-
-            <li><a asp-controller="Administration" asp-action="ListUsers">Users</a></li>
-            <li><a asp-controller="Administration" asp-action="ListRoles">Roles</a></li>
-            <li><a asp-controller="Logsat" asp-action="Index">Logs</a></li>
-            
-            }
-
              @if (signInManager.IsSignedIn(User))
-                        {
-                            <li>
-                                <form method="post" asp-action="Logout" asp-controller="Account">
-                                <button class="buttoni" type="submit">
-                                        Logout @User.Identity.Name
-                                    </button>
-                                </form>
-                            </li>
-                        }
+             {
+                  <li><a asp-controller="Movies" asp-action="Index">Movies</a></li>
+                  <li>
+                       <form method="post" asp-action="Logout" asp-controller="Account">
+                           <button class="buttoni" type="submit">
+                               Logout @User.Identity.Name
+                           </button>
+                       </form>
+                  </li>
+             }
         </ul>
     </div>
 
@@ -43,16 +32,14 @@
             <button class="button" type="submit" onclick="location.href='@Url.Action("Register", "Account")'"><span></span>Sign In</button>
             <button class="button" type="submit" onclick="location.href='@Url.Action("Login", "Account")'"><span></span>Log In</button>
         </div>
-        <h1 style="color: #05b4e4; padding-top:10%; text-shadow: 0 0 25px #05b4e4;">Top 3 movies:</h1>
     </div>
     
 </div> 
 
-<div>
-
-    
-   
+<div class="most-watched">
+    <h1>Top 3 most watched movies:</h1>
     <div class="anisa">
+        
         
         @foreach (var item in Model)
         {
@@ -69,76 +56,33 @@
       </a>
         }
     </div>
-  
-
-    
 
 </div>
 
 
-
-
-@*@model IEnumerable<Movie>
-
-@{
-    ViewData["Title"] = "Home Page";
-    Layout = null;
-}
- <link href="@Url.Content("~/css/movies.css")" rel="stylesheet" />
- <link href="@Url.Content("~/css/HomePage.css")" rel="stylesheet" />
-
-
-<div class="container">
-        <div class="title">
-            <div class="content">
-                <h1>Watch your favorite movies, TV shows and more.</h1>
-                <div class="login">
-                    <h3>Ready to watch? Enter your email and get access to unlimited fun!</h3>
-                    <div class="email">
-                        <button><a asp-controller="Account" asp-action="Register">Sign In</a></button>
-                        <button><a asp-controller="Account" asp-action="Login">Log In</a></button>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="footer">
+    <div class="waves">
+        <div class="wave" id="wave1"></div>
+        <div class="wave" id="wave2"></div>
+        <div class="wave" id="wave3"></div>
+        <div class="wave" id="wave4"></div>
     </div>
-
-    <h1>Most viewed movies are:</h1>
-
-    @foreach(var item in Model){
-<div class="card">
- 
-    <a>
-        <div class="img1"><img src="@item.ImageURL" alt="@item.Name"></div>
-        <div class="img2"><img src="@item.ImageURL"></div>
-        <div class="title">@item.Name</div>
-        <div class="text">@item.Description</div>
-        <a href="#"><div class="catagory">@item.MovieCategory <i class="fas fa-film"></i></div></a>
-        <a href="#"><div class="views">@item.Duration min <i class="far fa-eye"></i> </div></a>
-    </a>
+    <ul class="social_icon">
+        <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+        <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+        <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+        <li><a href="#"><ion-icon name="logo-snapchat"></ion-icon></a></li>
+    </ul>
+    <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+    <p>All Rights Reserved | 2023</p>
 </div>
-}
 
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-
-
-<footer class="footer-distributed">
-
-    <div class="footer-left">
-        <h3>Filma<span>Njezetepese</span></h3>
-
-        <p class="footer-links">
-            <a href="#">Home</a>
-            
-            <a href="#">About</a>
-        </p>
-
-        <p class="footer-company-name">Copyright © 2023 <strong>Filma25</strong> All rights reserved</p>
-    </div>
-
-    <div class="footer-center">
-        
-    </div>
-
-
-  *@

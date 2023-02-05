@@ -22,10 +22,67 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
     <link href="@Url.Content("~/css/global_style.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/css/homepage.css")" rel="stylesheet" />
     @RenderSection("Styles", required: false)
    
 </head>
+
+@*@if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+
+    <li><a asp-controller="Administration" asp-action="ListUsers">Users</a></li>
+    <li><a asp-controller="Administration" asp-action="ListRoles">Roles</a></li>
+    <li><a asp-controller="Logsat" asp-action="Index">Logs</a></li>
+
+}*@
+
 <body>
+    <header>
+        <div class="navbar">
+            <img src="~/images/logofinal2.png" class="logo" />
+
+            <ul>
+                @if (signInManager.IsSignedIn(User))
+                {
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="Movies" asp-action="Index">Movies</a></li>
+                    <li class="dropdown">
+                        <div class="select">
+                            <span class="selected">Categories</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="menuLayout">
+                            <li>Action</li>
+                            <li>Comedy</li>
+                            <li>Drama</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <div class="select">
+                            <span class="selected">Manage</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="menuLayout">
+                            <li>Users</li>
+                            <li>Roles</li>
+                            <li>Logs</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <form method="post" asp-action="Logout" asp-controller="Account">
+                            <button class="buttoni" type="submit">
+                                Logout @User.Identity.Name
+                            </button>
+                        </form>
+                    </li>
+                }
+            </ul>
+        </div>
+
+
+
+@*<body>
     <header>
 
         <nav class="navbar navbar-expand-lg navbar-transparent bg-transparent" style="color-white">
@@ -92,95 +149,7 @@
 
 
 
-    </ul>
-    
-@*@if ((ViewContext.RouteData.Values["action"].ToString() == "Index" && ViewContext.RouteData.Values["controller"].ToString() == "Movies")
-|| (ViewContext.RouteData.Values["action"].ToString() == "Search" && ViewContext.RouteData.Values["controller"].ToString() == "Movies"))
-                {
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <form method="post" asp-action="Search" class="form-inline my-2 my-lg-0">
-                            <input name="searchQuery" style="margin-left:120vh; margin-top:0.7534983853606028vh;" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                            <button style="margin-top:0.7534983853606028vh;" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    }
-                    @if (!(User.IsInRole("Admin")))
-                    {
-                        <form method="post" asp-action="Search" class="form-inline my-2 my-lg-0">
-                            <input name="searchQuery" style="margin-left:125vh; margin-top:0.7534983853606028vh;" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                            <button style="margin-top:0.7534983853606028vh;" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    }
-                }*@
-
-    
-  </div>
-</nav>
-        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Filmat</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Movies" asp-action="Index">Movies</a>
-                        </li>
-                        @if(signInManager.IsSignedIn(User) && User.IsInRole("Admin")){
-                        <li class="nav-link dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            Manage
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
-                            <a asp-action="Index" asp-controller="Movies" class="dropdown-item">
-                                Movies
-                            </a>
-                                 
-                            <a asp-action="ListUsers" asp-controller="Administration" class="dropdown-item">
-                                Users
-                            </a>
-                            <a asp-action="ListRoles" asp-controller="Administration" class="dropdown-item">
-                                Roles
-                            </a> 
-                            <a asp-action="Index" asp-controller="Logsat" class="dropdown-item">
-                                Logs
-                            </a> 
-
-                        </div>
-                        </li>
-                        }
-                    </ul>
-                    <ul class="navbar-nav m-lg-auto">
-                        @if (signInManager.IsSignedIn(User))
-                        {
-                            <li class="nav-item">
-                                <form method="post" asp-action="Logout" asp-controller="Account">
-                                    <button type="submit" class="nav-link btn btn-link py-0" style="width:auto;margin-top: 14px;">
-                                        Logout @User.Identity.Name
-                                    </button>
-                                </form>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
-                            </li>
-                        }
-                    </ul>
-                </div>
-                
-            </div>
-        </nav>*@
+    </ul>*@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -188,6 +157,34 @@
         </main>
     </div>
 
+    <script>
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            const select = dropdown.querySelector('.select');
+            const caret = dropdown.querySelector('.caret');
+            const menu = dropdown.querySelector('.menuLayout');
+            const options = dropdown.querySelector('.menuLayout li');
+            const selected = dropdown.querySelector('.selected');
+
+            select.addEventListener('click', () => {
+                select.classList.toggle('select-clicked');
+                caret.classList.toggle('caret-rotate');
+                menu.classList.toggle('menuLayout-open');
+            });
+
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    selected.innerText = option.innerText;
+
+                    select.classList.remove('selected-clicked');
+                    caret.classList.remove('caret-rotate');
+                    menu.classList.remove('menuLayout-open');
+
+                    
+                });
+            });
+        });
+    </script>
     
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
