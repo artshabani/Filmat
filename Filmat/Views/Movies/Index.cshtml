@@ -16,63 +16,57 @@
 
 }
 
+
     <form method="post" asp-action="Search" class="form-inline my-2 my-lg-0 display-left">
         <input name="searchQuery" style=" color:white; margin-left:38%;background:transparent; border:0.5px solid white;" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
         <button style="margin-top:0.7534983853606028vh;" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
+
+
     <div class="container p-0">
 
         
 
         <div class="container-fluid" style="position: absolute; left:0px">
-            <div class="row" style="width:100%; margin-left: position:absolute; left:0px; ">
+            <div class="row" style="width:100%; position:absolute; left:0px;">
 
-                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 movie_list">
-                <div class="pt-8 pb-2 mb-3">
+              <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 movie_list">
+                <div  class="pt-8 pb-2 mb-3">
 
 
                     <div class="row" style=" margin-top:-2%;margin-right: -15px; margin-left: 11%; width: 115%;">
-                    @foreach (var item in Model)
-                    {
-                        <!-- Movie Card Start -->
-                        <div class="card-view">
-                            <div style="background: url(@item.ImageURL); background-size:contain;" class="card-header avengerEndgame">
-                                <div class="card-header-icon">
-                                    <a asp-action="PlayMovie" asp-route-id="@item.Id">
-                                        <i class="material-icons header-icon">play_arrow</i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card-movie-content">
-                                <div class="card-movie-content-head">
-                                    <a href="#">
-                                        <h3 class="card-movie-title">@item.Name</h3>
-                                    </a>
-                                    <div class="ratings">@item.ViewCount</div>
-                                </div>
-                                <div class="card-movie-info">
-                                    <div class="movie-running-time">
-                                        <label>Last update</label>
-                                        <span>2023</span>
+
+                        <div class="most-watched">
+
+                           <div class="anisa">
+
+
+                                @foreach (var item in Model)
+                                {
+                                        <a asp-controller="Movies" asp-action="PlayMovie" asp-route-id="@item.Id">
+                                    <div class="frem">
+                                        <div class="center-cant">
+                                                <img src="@item.ImageURL" alt="">
+                                            <div class="row">
+                                                <p>@item.Name</p>
+                                                <h2>@item.ViewCount views</h2>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="movie-running-time">
-                                        <label>Running time</label>
-                                        <span>@item.Duration</span>
-                                    </div>
-                                </div>
-                            </div>
+                                  </a>
+                                }
+                           </div>
                         </div>
-                    }
                     <!-- Movie Card End -->
 
-                </div>
-            </div>
+                   </div>
+                 </div>
 
-            </main>
-        </div>
+              </main>
+           </div>
+         </div>
+
     </div>
-
-</div>
 
 
 

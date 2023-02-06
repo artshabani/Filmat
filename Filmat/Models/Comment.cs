@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Filmat.Models;
 
+
+
 namespace Filmat.Models
 {
 	public class Comment

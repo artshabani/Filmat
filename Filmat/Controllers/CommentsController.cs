@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Identity;
 using Filmat.Models;
 using Filmat.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Filmat.Controllers
 {
+	//[Authorize]
 	public class CommentsController : Controller
 	{
 
