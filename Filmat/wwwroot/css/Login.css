@@ -10,7 +10,7 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background: url(../images/newbackground.jpeg);
+    background: url(../images/newbackground-blurred.jpg);
     background-size: cover;
 }
 
@@ -78,7 +78,8 @@ body {
 
     .form-submit-btn input {
         display: block;
-        width: 95%;
+        width: 90%;
+        margin-left: 20px;
         margin-top: 10px;
         align-items: stretch;
         font-size: 20px;

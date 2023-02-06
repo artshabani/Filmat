@@ -1,5 +1,5 @@
 ﻿body {
-	background-image: url(../images/newbackground.jpeg);
+	background-image: url(../images/newbackground-blurred.jpg);
 	background-size: cover;
 	background-position: center;
 	
@@ -7,6 +7,10 @@
 
 h1, h2, h3, h4, h5, h6 {
 	color: white;
+	margin-left: 35%;
 }
 
+label {
+	color:white;
+}
 
