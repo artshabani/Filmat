@@ -5,7 +5,7 @@
 }
 
 @section Styles{
-    <link href="@Url.Content("~/css/PlayMovie.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/StyleSheet.css")" rel="stylesheet" />
 
 }
 
@@ -23,7 +23,7 @@
                     <input type="hidden" asp-for="@Model[i].UserId">
                     <input type="hidden" asp-for="@Model[i].UserName">
                     <input asp-for="@Model[i].IsSelected" class="form-check input" />
-                    <label asp-for="@Model[i].IsSelected" class="form-check-label">
+                    <label style="color:black" asp-for="@Model[i].IsSelected" class="form-check-label">
                         @Model[i].UserName
                     </label>
                 </div>

@@ -1,19 +1,28 @@
-﻿@model Movie
-
-@{
+﻿@{
     ViewData["Title"] = "Play Movie";
 
-    
+
 }
 @section Styles{
     <link href="@Url.Content("~/css/PlayMovie.css")" rel="stylesheet" />
 
 }
 
-<video style="width:1000px; margin-top:150px; margin:80px; border: 1.5px solid white;" controls autoplay>
+    <video style="width:1000px; margin-top:150px; margin:80px; border: 1.5px solid white;" controls autoplay>
 
-    <source src="~/Videos/Wednesday.mp4" type="video/mp4">
+        <source src="~/Videos/Wednesday.mp4" type="video/mp4">
 
-</video>
+    </video>
 
+    <div style="background:transparent;" class="card text-center">
+        <div style="color:white; font-size: 25px;" class="card-header">
+            @Model.Name
+        </div>
+        <div style="color:white" class="card-body">
+            <p class="card-text">@Model.Description</p>
+        </div>
+        <div style="color:white" class="card-footer text-muted">
+            @Model.Duration minutes
+        </div>
+    </div>
 

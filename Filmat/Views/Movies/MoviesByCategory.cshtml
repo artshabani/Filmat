@@ -1,27 +1,146 @@
 ﻿@model IEnumerable<Movie>
+@inject SignInManager<ApplicationUser> signInManager;
 
 @{
     ViewData["Title"] = "Movies by Category";
+    Layout = null;
+    Pager pager = new Pager();
+
+    int pageNo = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
 }
 
-@section Styles {
-    <link href="@Url.Content("~/css/movies.css")" rel="stylesheet" />
-}
+    <link href="@Url.Content("~/css/moviesFinal.css")" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-@foreach (var item in Model){
-    
-        
-<div class="card">
-    
-  <a asp-action="PlayMovie" asp-route-id="@item.Id">
-    <div class="img1"><img src="@item.ImageURL" alt="@item.Name" ></div>
-    <div class="img2"><img src="@item.ImageURL"></div>
-    <div class="title">@item.Name</div>
-    <div class="text">@item.Description</div>
-    <a href="#"><div class="catagory">@item.MovieCategory <i class="fas fa-film"></i></div></a>
-    <a href="#"><div class="views">@item.Duration min <i class="far fa-eye"></i> </div></a>
-  </a>
+    <div class="banner">
+        <div class="navbar">
+            <img src="~/images/logofinal2.png" class="logo" />
+            <ul>
+            @if (signInManager.IsSignedIn(User))
+            {
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Movies" asp-action="Index">Movies</a></li>
+                <li>
+                    <div class="dropdown">
+                        <button>Categories</button>
+                        <div class="dropdown-options">
+                            <a asp-controller="Movies" asp-action="MoviesByCategory" asp-route-category="Action">Action</a>
+                            <a asp-controller="Movies" asp-action="MoviesByCategory" asp-route-category="Comedy">Comedy</a>
+                            <a asp-controller="Movies" asp-action="MoviesByCategory" asp-route-category="Drama">Drama</a>
+                            <a asp-controller="Movies" asp-action="MoviesByCategory" asp-route-category="horror">Horror</a>
+                        </div>
+                    </div>
+                </li>
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+
+                    <li><a asp-controller="Administration" asp-action="ListUsers">Users</a></li>
+                    <li><a asp-controller="Administration" asp-action="ListRoles">Roles</a></li>
+                    <li><a asp-controller="Logsat" asp-action="Index">Logs</a></li>
+
+                }
+
+                <li>
+                    <form method="post" asp-action="Logout" asp-controller="Account">
+                        <button class="buttoni" type="submit">
+                            Logout @User.Identity.Name
+                        </button>
+                    </form>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <form method="post" asp-action="Search" class="form-inline my-2 my-lg-0 display-left">
+        <input name="searchQuery" style=" color:white; margin-left:38%;background:transparent; border:0.5px solid white;" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button style="margin-top:0.7534983853606028vh; margin-bottom:0.5%" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <div class="most-watched">
+        @foreach (var item in Model)
+        {
+            <div style="padding-bottom:5%">
+                <a asp-controller="Movies" asp-action="PlayMovie" asp-route-id="@item.Id">
+                    <div class="frem">
+                        <div class="center-cant">
+                            <img src="@item.ImageURL" alt="">
+                            <div class="row">
+                                <p>@item.Name</p>
+                                <h2>@item.ViewCount views</h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <div style:"width:auto">
+                        <a class="edit" title="Edit" data-toggle="tooltip" asp-action="Edit" asp-route-id="@item.Id"><i class="material-icons">&#xE254;</i></a>
+                        <a title="Details" data-toggle="tooltip" asp-action="Details" asp-route-id="@item.Id"><i class="material-icons">&#xE253;</i></a>
+                        <a class="delete"
+                   title="Delete"
+                   data-toggle="tooltip"
+                   asp-action="Delete"
+                   asp-route-id="@item.Id">
+                            <i class="material-icons">&#xE872;</i>
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+    <div class="container">
+        @if (pager.TotalPages > 0)
+        {
+            <ul class="pagination justify-content-end">
+
+                @if (pager.CurrentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Movies" asp-action="Index" asp-route-pg="1">First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Movies" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
+                    </li>
+                }
+
+
+                @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                {
+                    <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+                        <a class="page-link" asp-controller="Movies" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                    </li>
+
+                }
+                @if (pager.CurrentPage < pager.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Movies" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+                    </li>
+                    <li>
+                        <a class="page-link" asp-controller="Movies" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
+                    </li>
+                }
+
+
+            </ul>
+        }
+    </div>
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
+        <div style="position:fixed; right:25px; bottom:25px;" class="text-white">
+            <a asp-controller="Movies" asp-action="Create" class="btn btn-success"><i style="background: transparent;" class="bg-info bi-plus-circle">Add New</i></a>
+        </div>
+    }
+
 </div>
 
-    
-    }
+

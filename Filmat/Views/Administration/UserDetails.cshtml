@@ -5,7 +5,7 @@
 }
 
 @section Styles{
-    <link href="@Url.Content("~/css/PlayMovie.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/StyleSheet.css")" rel="stylesheet" />
 
 }
 
@@ -13,7 +13,7 @@
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h1>Details for: @Model.Emri</h1>
+                <h1 style="color: white">Details for: @Model.Emri</h1>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
@@ -40,7 +40,7 @@
 
                     <div class="form-group">  
                         <a class="btn btn-outline-succes float-right" asp-action="EditUser" asp-route-id="@Model.Id">Edit</a>
-                        <a class="btn btn-outline-secondary" asp-action="ListUsers">Back</a>
+                        <a style="color: white" class="btn btn-outline-secondary" asp-action="ListUsers">Back</a>
                     </div>
                 
             </div>

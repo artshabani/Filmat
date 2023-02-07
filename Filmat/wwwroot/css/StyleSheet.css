@@ -1,0 +1,10 @@
+﻿body {
+    background-image: url(../images/newbackground-blurred.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+
+label {
+    color: white;
+}

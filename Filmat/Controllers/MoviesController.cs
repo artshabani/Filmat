@@ -167,7 +167,16 @@ namespace Filmat.Controllers
 		{
 
 			var movies = _service.SearchMovies(searchQuery);
-			return View(movies);
+
+            if (!(movies.Equals(searchQuery)))
+            {
+              
+                return View("AccessDenied");
+            }
+
+            return View(movies);
+
+
 
 		}
 
