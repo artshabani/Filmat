@@ -27,15 +27,6 @@
    
 </head>
 
-@*@if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-{
-
-    <li><a asp-controller="Administration" asp-action="ListUsers">Users</a></li>
-    <li><a asp-controller="Administration" asp-action="ListRoles">Roles</a></li>
-    <li><a asp-controller="Logsat" asp-action="Index">Logs</a></li>
-
-}*@
-
 <body>
     <header>
         <div class="navbar">
@@ -46,29 +37,7 @@
                 {
                     <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-controller="Movies" asp-action="Index">Movies</a></li>
-                    <li class="dropdown">
-                        <div class="select">
-                            <span class="selected">Categories</span>
-                            <div class="caret"></div>
-                        </div>
-                        <ul class="menuLayout">
-                            <li>Action</li>
-                            <li>Comedy</li>
-                            <li>Drama</li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <div class="select">
-                            <span class="selected">Manage</span>
-                            <div class="caret"></div>
-                        </div>
-                        <ul class="menuLayout">
-                            <li>Users</li>
-                            <li>Roles</li>
-                            <li>Logs</li>
-                        </ul>
-                    </li>
+                    
                     <li>
                         <form method="post" asp-action="Logout" asp-controller="Account">
                             <button class="buttoni" type="submit">
@@ -156,36 +125,7 @@
             @RenderBody()
         </main>
     </div>
-
-    <script>
-        const dropdowns = document.querySelectorAll('.dropdown');
-        dropdowns.forEach(dropdown => {
-            const select = dropdown.querySelector('.select');
-            const caret = dropdown.querySelector('.caret');
-            const menu = dropdown.querySelector('.menuLayout');
-            const options = dropdown.querySelector('.menuLayout li');
-            const selected = dropdown.querySelector('.selected');
-
-            select.addEventListener('click', () => {
-                select.classList.toggle('select-clicked');
-                caret.classList.toggle('caret-rotate');
-                menu.classList.toggle('menuLayout-open');
-            });
-
-            options.forEach(option => {
-                option.addEventListener('click', () => {
-                    selected.innerText = option.innerText;
-
-                    select.classList.remove('selected-clicked');
-                    caret.classList.remove('caret-rotate');
-                    menu.classList.remove('menuLayout-open');
-
-                    
-                });
-            });
-        });
-    </script>
-    
+  
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -18,9 +18,9 @@
           @foreach(var item in Model){
 
             <b><p>@item.Text</p></b>
-            <b><small class="text-muted">Posted by <span style="color:#05b4e4">@item.UserID</span> on @item.TimeStamp</small></b>
+            <b><small class="text-muted">Posted by @item.UserID on @item.TimeStamp</small></b>
             <hr />
-
+            
            }
                 <form method="Post" asp-action="LeaveComment">
                     <div class="form-group">
