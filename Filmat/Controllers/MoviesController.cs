@@ -165,18 +165,12 @@ namespace Filmat.Controllers
 		[HttpPost]
 		public IActionResult Search(string searchQuery)
 		{
+			
 
 			var movies = _service.SearchMovies(searchQuery);
 
-            if (!(movies.Equals(searchQuery)))
-            {
-              
-                return View("AccessDenied");
-            }
-
-            return View(movies);
-
-
+			
+				return View(movies); 
 
 		}
 

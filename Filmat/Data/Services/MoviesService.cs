@@ -74,14 +74,15 @@ namespace Filmat.Data.Services
 			return mostViewedMovies;
 		}
 
-		public IEnumerable<Movie> SearchMovies(string searchQuery)
-		{
-			return _context.Movies.AsEnumerable().Where(m => m.Name.Contains(searchQuery)
-			|| m.Description.Contains(searchQuery)
-			|| m.MovieCategory.ToString().Contains(searchQuery)
-			|| m.Duration.ToString().Contains(searchQuery)).ToList();
-										 
-		}
-	}
+        public IEnumerable<Movie> SearchMovies(string searchQuery)
+        {
+            searchQuery = searchQuery.ToLowerInvariant();
+            return _context.Movies.AsEnumerable().Where(m => m.Name.ToLowerInvariant().Contains(searchQuery)
+            || m.Description.ToLowerInvariant().Contains(searchQuery)
+            || m.MovieCategory.ToString().ToLowerInvariant().Contains(searchQuery)
+            || m.Duration.ToString().ToLowerInvariant().Contains(searchQuery)).ToList();
+        }
+
+    }
 
 }
