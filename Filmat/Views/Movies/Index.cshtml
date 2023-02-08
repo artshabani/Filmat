@@ -138,12 +138,20 @@
                 </ul>
             }
         </div>
-        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-        {
-            <div style="position:fixed; right:25px; bottom:25px;" class="text-white">
-                <a asp-controller="Movies" asp-action="Create" class="btn btn-success"><i style= "background: transparent;" class="bg-info bi-plus-circle">Add New</i></a>
-            </div>
-        }
+
+    <div style="position:fixed; right:25px; bottom:25px;" class="text-white" class="btn-group" role="group" aria-label="Basic example">
+            @if(signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+            <button type="button" class="btn btn-secondary">
+                <a asp-controller="Movies" asp-action="Create">Add New</a>
+              </button>
+            }
+        <button type="button" class="btn btn-secondary">
+            <a asp-controller="Comments" asp-action="Index">Leave a Comment</a>
+        </button>
+        
+    </div>
+    
 
 </div>
 
